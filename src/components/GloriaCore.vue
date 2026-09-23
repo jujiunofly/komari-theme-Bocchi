@@ -11,7 +11,7 @@ const easterVariant = ref<'reflection' | 'wedding'>('wedding')
 let easterTimer: ReturnType<typeof setTimeout> | null = null
 const isReflectionEaster = computed(() => easterVariant.value === 'reflection')
 const easterSource = computed(() => isReflectionEaster.value
-  ? '/images/bocchi/boqi_white_phone.webp'
+  ? '/images/bocchi/boqi_white_desktop.webp'
   : appStore.gloriaHeroUrl || '/images/bocchi/boqi_dark_desktop.webp')
 const easterType = computed(() => isReflectionEaster.value ? 'image' : appStore.gloriaHeroUrl ? appStore.gloriaHeroType : 'image')
 const easterAlt = computed(() => isReflectionEaster.value

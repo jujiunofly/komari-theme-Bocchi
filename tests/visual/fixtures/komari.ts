@@ -367,7 +367,7 @@ export async function installKomariFixture(page: Page, options: VisualFixtureOpt
     fanAudioPreviewVolume: 35,
     fanAudioPreviewDuration: 25,
     fanAudioTrackSources: options.audioPreview
-      ? JSON.stringify({ '吉他与孤独与蓝色星球': '/audio-preview-test.mp3', 'Where Did U Go': '/audio-preview-test.mp3' })
+      ? JSON.stringify({ 'ギターと孤独と蒼い惑星': '/audio-preview-test.mp3', 'Where Did U Go': '/audio-preview-test.mp3' })
       : '{}',
     regionAudioTracks: JSON.stringify({ US: 'Where Did U Go' }),
     generalCardPreset: '自定义',

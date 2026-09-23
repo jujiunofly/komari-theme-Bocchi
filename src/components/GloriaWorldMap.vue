@@ -167,7 +167,7 @@ onMounted(async () => {
   <div class="gloria-world-map" :class="{ 'gloria-world-map--paused': paused }">
     <div class="gloria-world-map__heading">
       <span>结束乐队地图</span>
-      <small>{{ markers.length }} REGIONS · {{ onlineServers }} / {{ totalServers }} STARS ONLINE</small>
+      <small>{{ markers.length }} 个地区 · {{ onlineServers }} / {{ totalServers }} 在线</small>
     </div>
 
     <svg
@@ -231,13 +231,13 @@ onMounted(async () => {
       <template v-if="activeMarker">
         <strong>{{ activeMarker.label }}</strong>
         <span :class="{ 'is-offline': activeMarker.onlineServers === 0 }">
-          {{ activeMarker.onlineServers }} / {{ activeMarker.servers }} {{ activeMarker.onlineServers > 0 ? 'STARS ONLINE' : 'STARS OFFLINE' }}
+          {{ activeMarker.onlineServers }} / {{ activeMarker.servers }} {{ activeMarker.onlineServers > 0 ? '在线' : '离线' }}
         </span>
         <span v-if="activeMarkerAudioTrack">♫ 《{{ activeMarkerAudioTrack }}》</span>
       </template>
       <template v-else>
-        <strong>STAR NETWORK</strong>
-        <span>HOVER A STAR TO LIGHT ITS REGION</span>
+        <strong>结束乐队</strong>
+        <span>悬停查看这个地区的节点</span>
       </template>
     </div>
   </div>

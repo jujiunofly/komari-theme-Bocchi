@@ -154,7 +154,7 @@ const showPrice = computed(() => appStore.privateFeaturesAllowed || !appStore.hi
 
 const uptimeDaysText = computed(() => {
   const days = getUptimeDays(props.node.uptime)
-  return appStore.lang === 'zh-CN' ? `星光持续 ${days} 天` : `STARLIGHT · ${days} DAYS`
+  return appStore.lang === 'zh-CN' ? `在线 ${days} 天` : `ONLINE · ${days} DAYS`
 })
 
 const priceText = computed(() => {
@@ -162,24 +162,24 @@ const priceText = computed(() => {
   if (node.price === 0 || !showPrice.value)
     return ''
   if (isFreePrice(node.price))
-    return appStore.lang === 'zh-CN' ? '星光赠礼' : 'STARLIGHT GIFT'
+    return appStore.lang === 'zh-CN' ? '免费' : 'FREE'
 
   const price = formatPrice(node.price, node.currency, appStore.lang)
   const cycle = getBillingCycleText(node.billing_cycle, appStore.lang)
   if (appStore.lang !== 'zh-CN')
-    return `${cycle} STAR PACT · ${price}`
+    return `${cycle} · ${price}`
 
   const themedCycles: Record<string, string> = {
-    月: '月度星约',
-    季: '季度星约',
-    半年: '半年星约',
-    年: '年度星约',
-    两年: '两年星约',
-    三年: '三年星约',
-    五年: '五年星约',
-    一次性: '一次星约',
+    月: '月付',
+    季: '季付',
+    半年: '半年付',
+    年: '年付',
+    两年: '两年付',
+    三年: '三年付',
+    五年: '五年付',
+    一次性: '一次性',
   }
-  return `${themedCycles[cycle] ?? `${cycle}星约`} · ${price}`
+  return `${themedCycles[cycle] ?? cycle} · ${price}`
 })
 
 // 第三列：剩余天数（始终） + 剩余价值（仅在允许显示金额时），带图标与相邻列对齐
@@ -199,23 +199,23 @@ const remainingInfoTags = computed<RemainingInfoTag[]>(() => {
     items.push({ icon: 'tabler:calendar-stats', text: '-', className: expiryClass })
   }
   else if (status === 'expired') {
-    items.push({ icon: 'tabler:calendar-stats', text: lang === 'zh-CN' ? '星约已结束' : 'STAR PACT ENDED', className: expiryClass })
+    items.push({ icon: 'tabler:calendar-stats', text: lang === 'zh-CN' ? '已到期' : 'EXPIRED', className: expiryClass })
   }
   else if (status === 'long_term') {
-    items.push({ icon: 'tabler:calendar-stats', text: lang === 'zh-CN' ? '长期星约' : 'LONG-TERM PACT', className: expiryClass })
+    items.push({ icon: 'tabler:calendar-stats', text: lang === 'zh-CN' ? '长期' : 'LONG TERM', className: expiryClass })
   }
   else if (lang === 'zh-CN') {
     items.push({ icon: 'tabler:calendar-stats', prefix: '余期', value: String(days), unit: '天', className: expiryClass })
   }
   else {
-    items.push({ icon: 'tabler:calendar-stats', prefix: 'PACT', value: String(days), unit: 'D LEFT', className: expiryClass })
+    items.push({ icon: 'tabler:calendar-stats', prefix: 'LEFT', value: String(days), unit: 'DAYS', className: expiryClass })
   }
 
   if (showPrice.value) {
     const value = isFreePrice(node.price)
       ? lang === 'zh-CN' ? '无' : 'N/A'
       : formatCurrencyValue(getRemainingValue(node.price, node.billing_cycle, node.expired_at), node.currency)
-    items.push({ icon: 'tabler:coins', prefix: lang === 'zh-CN' ? '余值' : 'PACT VALUE', value })
+    items.push({ icon: 'tabler:coins', prefix: lang === 'zh-CN' ? '余值' : 'VALUE', value })
   }
   return items
 })
@@ -261,7 +261,7 @@ function hasRegion(region: string | null | undefined): boolean {
         >✦</span>
         <div class="flex min-w-0 flex-1 flex-col">
           <span class="text-sm font-bold min-w-0 truncate">{{ props.node.name }}</span>
-          <span class="gloria-node-state">{{ props.node.online ? 'STARLIGHT ON' : 'STAR SLEEPING' }}</span>
+          <span class="gloria-node-state">{{ props.node.online ? '在线' : '离线' }}</span>
         </div>
         <DataTooltip
           v-if="nodeMessage"
@@ -347,7 +347,7 @@ function hasRegion(region: string | null | undefined): boolean {
             <div class="flex justify-between text-xs">
               <span class="inline-flex min-w-0 items-center gap-1 text-muted-foreground">
                 <Icon :icon="NODE_METRIC_ICONS.traffic" data-node-metric-icon="traffic" width="12" height="12" class="shrink-0 text-violet-500" aria-hidden="true" />
-                <span class="truncate">能量</span>
+                <span class="truncate">流量</span>
               </span>
               <span class="tabular-nums font-medium" :class="trafficPercentageClass">
                 {{ hasTrafficLimit(props.node) ? `${trafficUsedPercentage.toFixed(1)}%` : '∞' }}
@@ -372,7 +372,7 @@ function hasRegion(region: string | null | undefined): boolean {
             <div class="flex justify-between text-xs">
               <span class="inline-flex min-w-0 items-center gap-1 text-muted-foreground">
                 <Icon :icon="NODE_METRIC_ICONS.cpu" data-node-metric-icon="cpu" width="13" height="13" class="shrink-0 text-sky-500" aria-hidden="true" />
-                <span class="truncate">核心</span>
+                <span class="truncate">CPU</span>
               </span>
               <span class="tabular-nums font-medium">{{ (props.node.cpu ?? 0).toFixed(1) }}%</span>
             </div>
@@ -387,7 +387,7 @@ function hasRegion(region: string | null | undefined): boolean {
             <div class="flex justify-between text-xs">
               <span class="inline-flex min-w-0 items-center gap-1 text-muted-foreground">
                 <Icon :icon="NODE_METRIC_ICONS.memory" data-node-metric-icon="memory" width="13" height="13" class="shrink-0 text-emerald-500" aria-hidden="true" />
-                <span class="truncate">水晶记忆</span>
+                <span class="truncate">内存</span>
               </span>
               <span class="tabular-nums font-medium">{{ memPercentage.toFixed(1) }}%</span>
             </div>
@@ -402,7 +402,7 @@ function hasRegion(region: string | null | undefined): boolean {
             <div class="flex justify-between text-xs">
               <span class="inline-flex min-w-0 items-center gap-1 text-muted-foreground">
                 <Icon :icon="NODE_METRIC_ICONS.disk" data-node-metric-icon="disk" width="13" height="13" class="shrink-0 text-orange-500" aria-hidden="true" />
-                <span class="truncate">星库</span>
+                <span class="truncate">硬盘</span>
               </span>
               <span class="tabular-nums font-medium">{{ diskPercentage.toFixed(1) }}%</span>
             </div>
@@ -417,7 +417,7 @@ function hasRegion(region: string | null | undefined): boolean {
             <div class="flex justify-between text-xs">
               <span class="inline-flex min-w-0 items-center gap-1 text-muted-foreground">
                 <Icon :icon="NODE_METRIC_ICONS.traffic" data-node-metric-icon="traffic" width="13" height="13" class="shrink-0 text-violet-500" aria-hidden="true" />
-                <span class="truncate">能量</span>
+                <span class="truncate">流量</span>
               </span>
               <span class="tabular-nums font-medium" :class="trafficPercentageClass">
                 {{ hasTrafficLimit(props.node) ? `${trafficUsedPercentage.toFixed(1)}%` : '∞' }}
@@ -496,12 +496,12 @@ function hasRegion(region: string | null | undefined): boolean {
           v-if="taskSummaries.length > 1"
           class="node-ping-task-table min-w-0 overflow-hidden rounded-lg bg-slate-500/5 p-1.5"
           :class="!props.node.online ? 'blur-xs opacity-50' : ''"
-          aria-label="分目标光速延迟与信号损失"
+          aria-label="分目标延迟与丢包"
         >
           <div class="node-ping-task-grid mb-1 px-1 text-[9px] leading-none text-muted-foreground/75">
             <span>探测目标</span>
-            <span class="text-center">光速延迟</span>
-            <span class="text-center">信号损失</span>
+            <span class="text-center">延迟</span>
+            <span class="text-center">丢包</span>
           </div>
           <button
             v-for="task in taskSummaries"
@@ -509,8 +509,8 @@ function hasRegion(region: string | null | undefined): boolean {
             :data-node-ping-task-row="task.id"
             type="button"
             class="node-ping-task-grid w-full items-center rounded-md px-1 py-1 text-left transition-colors hover:bg-slate-500/8"
-            :title="`${task.name}\n平均光速延迟 ${Math.round(task.avgLatency)} ms\n平均信号损失 ${task.avgLoss.toFixed(1)}%`"
-            :aria-label="`${task.name}，光速延迟 ${Math.round(task.avgLatency)} 毫秒，信号损失 ${task.avgLoss.toFixed(1)}%`"
+            :title="`${task.name}\n平均延迟 ${Math.round(task.avgLatency)} ms\n平均丢包 ${task.avgLoss.toFixed(1)}%`"
+            :aria-label="`${task.name}，延迟 ${Math.round(task.avgLatency)} 毫秒，丢包 ${task.avgLoss.toFixed(1)}%`"
             @click.stop="emit('pingClick')"
           >
             <span class="break-words pr-1 text-[10px] font-medium leading-tight text-muted-foreground">{{ task.name }}</span>
@@ -567,12 +567,12 @@ function hasRegion(region: string | null | undefined): boolean {
               type="button"
               class="group/panel relative flex flex-col rounded-lg bg-slate-500/5"
               :class="[nodeCardPingPanelClass, nodeCardPanelClass, !props.node.online ? 'blur-xs opacity-50' : '']"
-              :title="taskSummaries[0]?.hasData ? `${taskSummaries[0].name}\n平均光速延迟 ${Math.round(taskSummaries[0].avgLatency)} ms` : `${taskSummaries[0]?.name}\n暂无采样数据`"
-              :aria-label="`${taskSummaries[0]?.name}，光速延迟 ${taskSummaries[0]?.latencyDisplay}`"
+              :title="taskSummaries[0]?.hasData ? `${taskSummaries[0].name}\n平均延迟 ${Math.round(taskSummaries[0].avgLatency)} ms` : `${taskSummaries[0]?.name}\n暂无采样数据`"
+              :aria-label="`${taskSummaries[0]?.name}，延迟 ${taskSummaries[0]?.latencyDisplay}`"
               @click.stop="emit('pingClick')"
             >
               <div class="flex items-center justify-between text-[11px] leading-none">
-                <span class="text-muted-foreground">光速延迟</span>
+                <span class="text-muted-foreground">延迟</span>
                 <span class="font-medium">{{ taskSummaries[0]?.latencyDisplay }}</span>
               </div>
               <div
@@ -596,12 +596,12 @@ function hasRegion(region: string | null | undefined): boolean {
               type="button"
               class="group/panel relative flex flex-col rounded-lg bg-slate-500/5"
               :class="[nodeCardPingPanelClass, nodeCardPanelClass, !props.node.online ? 'blur-xs opacity-50' : '']"
-              :title="taskSummaries[0]?.hasData ? `${taskSummaries[0].name}\n平均信号损失 ${taskSummaries[0].avgLoss.toFixed(1)}%` : `${taskSummaries[0]?.name}\n暂无采样数据`"
-              :aria-label="`${taskSummaries[0]?.name}，信号损失 ${taskSummaries[0]?.lossDisplay}`"
+              :title="taskSummaries[0]?.hasData ? `${taskSummaries[0].name}\n平均丢包 ${taskSummaries[0].avgLoss.toFixed(1)}%` : `${taskSummaries[0]?.name}\n暂无采样数据`"
+              :aria-label="`${taskSummaries[0]?.name}，丢包 ${taskSummaries[0]?.lossDisplay}`"
               @click.stop="emit('pingClick')"
             >
               <div class="flex items-center justify-between text-[11px] leading-none">
-                <span class="text-muted-foreground">信号损失</span>
+                <span class="text-muted-foreground">丢包</span>
                 <span class="font-medium">{{ taskSummaries[0]?.lossDisplay }}</span>
               </div>
               <div
@@ -633,7 +633,7 @@ function hasRegion(region: string | null | undefined): boolean {
             @click.stop="emit('pingClick')"
           >
             <div class="flex items-center justify-between text-[11px] leading-none">
-              <span class="text-muted-foreground">光速延迟</span>
+              <span class="text-muted-foreground">延迟</span>
               <span class="font-medium">{{ latencyDisplay }}</span>
             </div>
             <div
@@ -662,7 +662,7 @@ function hasRegion(region: string | null | undefined): boolean {
             @click.stop="emit('pingClick')"
           >
             <div class="flex items-center justify-between text-[11px] leading-none">
-              <span class="text-muted-foreground">信号损失</span>
+              <span class="text-muted-foreground">丢包</span>
               <span class="font-medium">{{ lossDisplay }}</span>
             </div>
             <div
@@ -709,7 +709,7 @@ function hasRegion(region: string | null | undefined): boolean {
           class="absolute inset-0 flex flex-col items-center justify-center z-10 rounded-xl bg-white/20 dark:bg-black/20 backdrop-blur-[2px]"
         >
           <div class="text-sm font-semibold text-destructive">
-            STAR SLEEPING
+            离线
           </div>
           <div class="text-[11px] text-muted-foreground mt-1">
             {{ offlineTime }}

@@ -1,8 +1,8 @@
 {
   "name": "Bocchi",
   "short": "Bocchi",
-  "description": "波奇酱粉丝向 Komari 监控主题：粉色玻璃卡片、明暗与手机桌面四套背景、结束乐队歌曲标签",
-  "version": "1.0.0",
+  "description": "波奇酱粉丝向 Komari 监控主题：粉色玻璃卡片、明暗与手机桌面四套背景、日语曲名标签",
+  "version": "1.0.1",
   "author": "jujiunofly",
   "url": "https://github.com/jujiunofly/komari-theme-Bocchi",
   "preview": "preview.png",
@@ -24,14 +24,14 @@
       },
       {
         "key": "dataUpdateInterval",
-        "name": "星辰数据更新间隔",
+        "name": "数据更新间隔",
         "type": "number",
         "default": 3,
         "help": "节点实时数据的刷新间隔，单位：秒，建议设置为 1-10 秒。"
       },
       {
         "key": "rpcTransportMode",
-        "name": "星网数据连接方式",
+        "name": "数据连接方式",
         "type": "select",
         "default": "http",
         "options": "http,websocket",
@@ -39,7 +39,7 @@
       },
       {
         "key": "defaultViewMode",
-        "name": "默认星辰视图",
+        "name": "默认节点视图",
         "type": "select",
         "default": "card",
         "options": "card,list",
@@ -47,7 +47,7 @@
       },
       {
         "key": "nodeCardSize",
-        "name": "星辰卡片尺寸",
+        "name": "节点卡片尺寸",
         "type": "select",
         "default": "compact",
         "options": "mini,compact,comfortable,large",
@@ -59,59 +59,59 @@
       },
       {
         "key": "alertEnabled",
-        "name": "显示星网公告",
+        "name": "显示公告",
         "type": "switch",
         "default": false,
-        "help": "在首页节点区域上方显示自定义星网公告。"
+        "help": "在首页节点区域上方显示自定义公告。"
       },
       {
         "key": "alertTitle",
-        "name": "星网公告标题",
+        "name": "公告标题",
         "type": "string",
         "default": "",
-        "help": "星网公告的标题文字。"
+        "help": "公告的标题文字。"
       },
       {
         "key": "alertContent",
-        "name": "星网公告内容",
+        "name": "公告内容",
         "type": "richtext",
         "default": "",
-        "help": "星网公告的正文，支持简单 Markdown 格式。"
+        "help": "公告的正文，支持简单 Markdown 格式。"
       },
       {
         "key": "stopEarth",
-        "name": "暂停星网亮点呼吸",
+        "name": "暂停地图亮点呼吸",
         "type": "switch",
         "default": false,
-        "help": "暂停 结束乐队地图上橘黄色节点亮点的呼吸动画。"
+        "help": "暂停地图上节点亮点的呼吸动画。"
       },
       {
         "key": "hideEarth",
-        "name": "隐藏 结束乐队地图",
+        "name": "隐藏节点地图",
         "type": "switch",
         "default": false,
-        "help": "隐藏 结束乐队地图，保留左侧宇宙总览指标。"
+        "help": "隐藏节点地图，保留左侧首页总览指标。"
       },
       {
         "key": "hideGeneralCard",
-        "name": "隐藏首页宇宙总览",
+        "name": "隐藏首页首页总览",
         "type": "switch",
         "default": false,
-        "help": "同时隐藏首页顶部的宇宙总览指标和 结束乐队地图。"
+        "help": "同时隐藏首页顶部的首页总览指标和 节点地图。"
       },
       {
         "key": "fanLabelsEnabled",
-        "name": "显示结束乐队歌曲标签",
+        "name": "显示歌曲标签",
         "type": "switch",
         "default": true,
-        "help": "从《孤独摇滚》曲目为当前节点批次随机分配不重复歌曲，显示为《歌曲名》；关闭后仅显示节点原有标签。"
+        "help": "从日语曲名为当前节点随机分配不重复曲名，显示为《歌曲名》；关闭后仅显示节点原有标签。"
       },
       {
         "key": "fanAudioPreviewEnabled",
         "name": "启用歌曲片段悬停试听",
         "type": "switch",
         "default": false,
-        "help": "节点卡片悬停时试听对应歌曲，星网地图节点亮点悬停时试听地区映射歌曲。主题不附带或下载音乐；仅会播放下方配置中由管理员自行提供并确认有权使用的音频。浏览器首次播放前通常需要用户先点击页面。"
+        "help": "节点卡片悬停时试听对应歌曲，地图节点亮点悬停时试听地区映射歌曲。主题不附带或下载音乐；仅会播放下方配置中由管理员自行提供并确认有权使用的音频。浏览器首次播放前通常需要用户先点击页面。"
       },
       {
         "key": "fanAudioPreviewVolume",
@@ -132,13 +132,13 @@
         "name": "歌曲片段音频映射 JSON",
         "type": "richtext",
         "default": "{}",
-        "help": "格式：{\"吉他与孤独与蓝色星球\":\"local:audio/吉他与孤独与蓝色星球.mp3\",\"如果能成为星座\":\"https://example.com/authorized/如果能成为星座.mp3\"}。local: 文件请放入 data/theme/user-assets/；只配置已获授权的 20-30 秒音频片段。"
+        "help": "格式：{\"ギターと孤独と蒼い惑星\":\"local:audio/track.mp3\",\"あのバンド\":\"https://example.com/authorized/track.mp3\"}。local: 文件请放入 data/theme/user-assets/；只配置已获授权的 20-30 秒音频片段。"
       },
       {
         "key": "regionAudioTracks",
         "name": "国家或地区歌曲映射 JSON",
         "type": "richtext",
-        "default": "{\"CN\":\"吉他与孤独与蓝色星球\",\"HK\":\"如果能成为星座\",\"MO\":\"小小的海\",\"TW\":\"无法歌唱的情歌\",\"SG\":\"青春复杂\",\"JP\":\"那支乐队\",\"US\":\"Distortion\",\"CA\":\"向光之中\",\"UK\":\"秘密基地\",\"DE\":\"绝不忘记\",\"FR\":\"空洞空洞\",\"KR\":\"什么错了\",\"PH\":\"滚动的岩石\",\"AU\":\"闪闪发光吧\",\"MY\":\"蓝色春天\"}",
+        "default": "{\"CN\":\"ギターと孤独と蒼い惑星\",\"HK\":\"星座になれたら\",\"MO\":\"小さな海\",\"TW\":\"ラブソングが歌えない\",\"SG\":\"青春コンプレックス\",\"JP\":\"あのバンド\",\"US\":\"Distortion!!\",\"CA\":\"光の中へ\",\"UK\":\"秘密基地\",\"DE\":\"忘れてやらない\",\"FR\":\"カラカラ\",\"KR\":\"なにが悪い\",\"PH\":\"転がる岩、君に朝が降る\",\"AU\":\"月並みに輝け\",\"MY\":\"青い春と西の空\"}",
         "help": "国家或地区代码对应歌曲名；歌曲名必须同时存在于上方音频映射中才会播放。该映射是主题默认建议，可按自己的节点和喜好修改。"
       },
       {
@@ -161,7 +161,7 @@
         "name": "显示观众/管理员信息",
         "type": "switch",
         "default": true,
-        "help": "开启后显示底部 IP 星网状态条；宽屏左下角同时显示详情卡。访客称为“观众”，已登录管理员称为“管理员”。"
+        "help": "开启后显示底部 IP 状态条；宽屏左下角同时显示详情卡。访客称为“观众”，已登录管理员称为“管理员”。"
       },
       {
         "key": "glassColorPreset",
@@ -181,29 +181,29 @@
       },
       {
         "key": "glassCustomColors",
-        "name": "自定义星光/深空玻璃 JSON",
+        "name": "自定义明亮/夜里玻璃 JSON",
         "type": "richtext",
         "default": "{\"lightCard\":\"#ffffffd0\",\"lightControl\":\"#fff5f9cc\",\"lightText\":\"#3b2433\",\"lightMutedText\":\"#7a4d62\",\"lightBorder\":\"#ffd0e4cc\",\"darkCard\":\"#140812cc\",\"darkControl\":\"#140812d9\",\"darkText\":\"#fff1f7\",\"darkMutedText\":\"#f3c3d6\",\"darkBorder\":\"#ff4fa340\"}",
         "help": "light*=明亮模式，dark*=夜里模式；Card=卡片，Control=控制条，Text=主文字，MutedText=次文字，Border=边框。支持 #RRGGBB 和带透明度的 #RRGGBBAA。"
       },
       {
-        "name": "03 · 首页宇宙总览指标",
+        "name": "03 · 首页首页总览指标",
         "type": "title"
       },
       {
         "key": "generalCardPreset",
-        "name": "宇宙总览指标方案",
+        "name": "首页总览指标方案",
         "type": "select",
         "default": "自定义",
         "options": "官方,基础,运维,资源,财务,流量,GPU,资产,完整,自定义",
-        "help": "当前默认与前端六项指标一一对应：记忆水晶、星辰余辉、能量输出、星库、累计能量、能量接收。选择“自定义”后读取下方 keys。"
+        "help": "当前默认与前端六项指标一一对应：内存、剩余价值、上行、硬盘、累计流量、下行。选择“自定义”后读取下方 keys。"
       },
       {
         "key": "generalCardKeys",
-        "name": "自定义宇宙总览指标 keys",
+        "name": "自定义首页总览指标 keys",
         "type": "richtext",
         "default": "memory\nremainingValue\nuploadSpeed\ndisk\ntotalTraffic\ndownloadSpeed",
-        "help": "逗号、空格或换行分隔。memory=CRYSTAL MEMORY · 记忆水晶；remainingValue=STAR VALUE · 星辰余辉；uploadSpeed=ENERGY OUT · 能量输出；disk=STAR VAULT · 星库；totalTraffic=ENERGY ARCHIVE · 累计能量；downloadSpeed=ENERGY IN · 能量接收。"
+        "help": "逗号、空格或换行分隔。memory=内存；remainingValue=剩余价值；uploadSpeed=上行；disk=硬盘；totalTraffic=累计流量；downloadSpeed=下行。"
       },
       {
         "name": "04 · 管理员工具与隐私",
@@ -252,15 +252,15 @@
         "help": "减少页面过渡动画效果，提升访问速度和响应性"
       },
       {
-        "name": "05 · 星辰卡片、列表与快捷控制",
+        "name": "05 · 节点卡片、列表与快捷筛选",
         "type": "title"
       },
       {
         "key": "homeQuickControlsEnabled",
-        "name": "显示星网快捷控制",
+        "name": "显示快捷筛选",
         "type": "switch",
         "default": true,
-        "help": "在星辰分组旁显示星辰珍藏、累计能量、能量峰值、沉睡星辰、过载星辰、星约将尽等快捷按钮。"
+        "help": "在节点分组旁显示收藏、累计流量、峰值、离线、高负载、即将到期等快捷按钮。"
       },
       {
         "key": "homeQuickControlPreset",
@@ -275,7 +275,7 @@
         "name": "自定义快捷按钮 keys",
         "type": "richtext",
         "default": "favorite\ntotalTraffic\npeak\noffline",
-        "help": "逗号、空格或换行分隔。 favorite=星辰珍藏； totalTraffic=累计能量； upload=能量输出； download=能量接收； peak=能量峰值； offline=沉睡星辰； highLoad=过载星辰； expiring=星约将尽。"
+        "help": "逗号、空格或换行分隔。 favorite=收藏； totalTraffic=累计流量； upload=上行； download=下行； peak=峰值； offline=离线； highLoad=高负载； expiring=即将到期。"
       },
       {
         "key": "nodeListMetadataEnabled",
@@ -300,31 +300,31 @@
       },
       {
         "key": "offlineNodesLast",
-        "name": "沉睡星辰置底",
+        "name": "离线节点置底",
         "type": "switch",
         "default": false,
-        "help": "筛选或排序时优先显示已点亮的星辰。"
+        "help": "筛选或排序时优先显示在线节点。"
       },
       {
         "key": "homeHighLoadThreshold",
-        "name": "过载星辰阈值",
+        "name": "高负载阈值",
         "type": "number",
         "default": 80,
-        "help": "核心（CPU）、水晶记忆（内存）或星库（硬盘）占用达到该百分比时归为过载星辰（1-100）。"
+        "help": "CPU、内存或硬盘占用达到该百分比时归为高负载（1-100）。"
       },
       {
         "key": "homeTrafficWarningThreshold",
-        "name": "能量流量预警阈值",
+        "name": "流量预警阈值",
         "type": "number",
         "default": 80,
-        "help": "节点能量（流量）配额使用率达到该百分比时归为流量预警（1-100）。"
+        "help": "节点流量配额使用率达到该百分比时归为流量预警（1-100）。"
       },
       {
         "key": "homeExpiringDays",
-        "name": "星约将尽天数",
+        "name": "即将到期天数",
         "type": "number",
         "default": 30,
-        "help": "星约余期小于等于该值时归为星约将尽（1-3650 天）。"
+        "help": "剩余天数小于等于该值时归为即将到期（1-3650 天）。"
       },
       {
         "key": "diskPredictionEnabled",
@@ -341,7 +341,7 @@
         "help": "预计剩余天数小于等于该值时在节点卡片和详情负载图中显示提示（1-3650）"
       },
       {
-        "name": "06 · 星辰详情概览卡片",
+        "name": "06 · 节点详情概览卡片",
         "type": "title"
       },
       {
@@ -367,7 +367,7 @@
         "help": "逗号、空格或换行分隔。 nodePrice=节点价格； monthlyCost=月均支出； remainingTime=剩余时间； remainingValue=剩余价值； cpuUsage=CPU使用率； gpuUsage=GPU使用率； memoryUsage=内存使用率； swapUsage=交换内存使用率； diskUsage=硬盘使用率； load=系统负载； temperature=系统温度； processes=进程数； connections=连接数； uptime=运行时间； uploadSpeed=实时上行； downloadSpeed=实时下行； totalTraffic=累计流量； trafficQuota=流量配额。"
       },
       {
-        "name": "07 · 星辰详情监控图表",
+        "name": "07 · 节点详情监控图表",
         "type": "title"
       },
       {

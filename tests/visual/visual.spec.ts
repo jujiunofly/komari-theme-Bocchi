@@ -112,9 +112,9 @@ test('desktop quick controls keep the final item fully visible', async ({ page }
   await installKomariFixture(page, { dark: true })
   await openStablePage(page)
 
-  const expiringControl = page.getByRole('button', { name: /切换到星约将尽节点/ })
+  const expiringControl = page.getByRole('button', { name: /切换到即将到期节点/ })
   await expect(expiringControl).toBeVisible()
-  await expect(expiringControl.locator('.home-quick-control__label')).toHaveText('星约将尽')
+  await expect(expiringControl.locator('.home-quick-control__label')).toHaveText('即将到期')
   const isFullyVisible = await expiringControl.evaluate((element) => {
     const button = element.getBoundingClientRect()
     const controls = element.closest('.home-quick-controls')?.getBoundingClientRect()
@@ -158,8 +158,8 @@ test('node cards keep each ping target latency and loss separate', async ({ page
   const taskRows = card.locator('[data-node-ping-task-row]')
   await expect(taskRows).toHaveCount(3)
   await expect(taskRows).toContainText(['浙江移动', '浙江联通', '浙江电信'])
-  await expect(card.getByText('光速延迟', { exact: true })).toBeVisible()
-  await expect(card.getByText('信号损失', { exact: true })).toBeVisible()
+  await expect(card.getByText('延迟', { exact: true })).toBeVisible()
+  await expect(card.getByText('丢包', { exact: true })).toBeVisible()
   for (let index = 0; index < 3; index++) {
     await expect(taskRows.nth(index)).toBeVisible()
     await expect(taskRows.nth(index).locator('[data-node-ping-bars="latency"]')).toBeVisible()
@@ -176,8 +176,8 @@ test('node cards show the backend name even when only one ping target is configu
   const taskRows = card.locator('[data-node-ping-task-row]')
   await expect(taskRows).toHaveCount(1)
   await expect(taskRows.first()).toContainText('Tokyo')
-  await expect(taskRows.first().getByText('光速延迟', { exact: true })).toBeVisible()
-  await expect(taskRows.first().getByText('信号损失', { exact: true })).toBeVisible()
+  await expect(taskRows.first().getByText('延迟', { exact: true })).toBeVisible()
+  await expect(taskRows.first().getByText('丢包', { exact: true })).toBeVisible()
   await expect(taskRows.first().locator('[data-node-ping-bars="latency"]')).toBeVisible()
   await expect(taskRows.first().locator('[data-node-ping-bars="loss"]')).toBeVisible()
 })
@@ -201,7 +201,7 @@ test('star list uses GLORIA terminology across every column', async ({ page }) =
   await openStablePage(page)
 
   await page.getByRole('button', { name: '列表视图' }).click()
-  for (const label of ['星光', '星系', '星辰', '星籍', '星光持续', '核心', '记忆水晶', '星库', '能量', '光速'])
+  for (const label of ['状态', '系统', '节点', '信息', '在线时长', 'CPU', '内存', '硬盘', '流量', '延迟'])
     await expect(page.getByText(label, { exact: true }).first()).toBeVisible()
 })
 
@@ -330,7 +330,7 @@ test('Crystal G opens the reflected-light easter egg independently', async ({ pa
   await page.locator('[data-gloria-easter-trigger="reflection"]').click()
   await expect(page.getByText('今天也出门了', { exact: true })).toBeVisible()
   await expect(page.getByText('一个人也算练过', { exact: true })).toHaveCount(0)
-  await expect(page.locator('.gloria-easter__backdrop')).toHaveAttribute('src', '/images/bocchi/boqi_white_phone.webp')
+  await expect(page.locator('.gloria-easter__backdrop')).toHaveAttribute('src', '/images/bocchi/boqi_white_desktop.webp')
   await expect(page).toHaveScreenshot('gloria-reflection-easter-desktop.png', { fullPage: false })
 })
 
@@ -360,7 +360,7 @@ test('licensed audio mappings connect node tracks and region stars', async ({ pa
   await openStablePage(page)
 
   const card = page.getByRole('button', { name: '查看节点 主控-洛杉矶 详情' })
-  await expect(card.locator('[title="悬停试听《吉他与孤独与蓝色星球》片段"]')).toBeVisible()
+  await expect(card.locator('[title="悬停试听《ギターと孤独と蒼い惑星》片段"]')).toBeVisible()
   await card.hover()
   await expect.poll(() => page.evaluate(() => (window as typeof window & { __gloriaAudioPlaySources?: string[] }).__gloriaAudioPlaySources?.length ?? 0)).toBeGreaterThan(0)
 
@@ -407,7 +407,7 @@ test('free node pricing stays semantic across home, finance, and detail', async 
   await openStablePage(page)
 
   const nodeCard = page.getByRole('button', { name: `查看节点 ${freeNodeName} 详情` })
-  await expect(nodeCard.getByText('星光赠礼', { exact: true })).toBeVisible()
+  await expect(nodeCard.getByText('免费', { exact: true })).toBeVisible()
   await expect(nodeCard.getByText('无', { exact: true })).toBeVisible()
   await expect(nodeCard.getByText('免费 / 年', { exact: true })).toHaveCount(0)
 

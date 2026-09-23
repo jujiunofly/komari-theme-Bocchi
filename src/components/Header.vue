@@ -15,7 +15,7 @@ const { record: recordVisitorEvent } = useVisitorAudit()
 
 const isScrolled = inject<ReturnType<typeof ref<boolean>>>('isScrolled', ref(false))
 
-const siteFavicon = ref('/images/bocchi/mark.svg')
+const siteFavicon = ref('/images/bocchi/logo.png')
 
 const actionButtons = computed(() => {
   const nextThemeTitle = appStore.isDark ? '切换到明亮' : '切换到夜里'

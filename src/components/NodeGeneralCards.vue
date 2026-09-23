@@ -436,7 +436,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
     case 'memory':
       return {
         key: 'memory',
-        label: 'CRYSTAL MEMORY · 记忆水晶',
+        label: '内存',
         icon: 'icon-park-outline:memory',
         value: formattedMemoryUsed.value.value,
         unit: `${formattedMemoryUsed.value.unit} / ${formattedMemoryTotal.value.value} ${formattedMemoryTotal.value.unit}`,
@@ -444,7 +444,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
     case 'disk':
       return {
         key: 'disk',
-        label: 'STAR VAULT · 星库',
+        label: '硬盘',
         icon: 'tabler:server-2',
         value: formattedDiskUsed.value.value,
         unit: `${formattedDiskUsed.value.unit} / ${formattedDiskTotal.value.value} ${formattedDiskTotal.value.unit}`,
@@ -452,7 +452,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
     case 'remainingValue':
       return {
         key: 'remainingValue',
-        label: 'STAR VALUE · 星辰余辉',
+        label: '剩余价值',
         icon: 'tabler:cash',
         value: showPrice.value ? `${formattedRemainingValue.value.symbol}${formattedRemainingValue.value.value}` : '***',
         tooltip: totalValueTooltip.value,
@@ -461,7 +461,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
     case 'totalTraffic':
       return {
         key: 'totalTraffic',
-        label: 'ENERGY ARCHIVE · 累计能量',
+        label: '累计流量',
         icon: 'tabler:download',
         value: totalTrafficTooltip.value.value,
         unit: totalTrafficTooltip.value.unit,
@@ -470,7 +470,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
     case 'uploadSpeed':
       return {
         key: 'uploadSpeed',
-        label: 'ENERGY OUT · 能量输出',
+        label: '上行',
         icon: 'tabler:chevrons-up',
         value: formattedSpeedUp.value.value,
         unit: formattedSpeedUp.value.unit,
@@ -478,7 +478,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
     case 'downloadSpeed':
       return {
         key: 'downloadSpeed',
-        label: 'ENERGY IN · 能量接收',
+        label: '下行',
         icon: 'tabler:chevrons-down',
         value: formattedSpeedDown.value.value,
         unit: formattedSpeedDown.value.unit,
@@ -486,7 +486,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
     case 'onlineNodes':
       return {
         key: 'onlineNodes',
-        label: 'STARLIGHT ON · 星辰在线',
+        label: '在线节点',
         icon: 'tabler:activity-heartbeat',
         value: formatCount(onlineNodeCount.value),
         unit: `/ ${formatCount(totalNodeCount.value)}`,
@@ -494,7 +494,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
     case 'avgCpu':
       return {
         key: 'avgCpu',
-        label: 'CORE POWER · 核心功率',
+        label: 'CPU',
         icon: 'tabler:cpu',
         value: formatDecimal(avgCpu.value),
         unit: '%',
