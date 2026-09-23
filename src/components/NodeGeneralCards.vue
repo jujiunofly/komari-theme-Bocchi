@@ -77,6 +77,7 @@ const financeCurrency = ref<CurrencyCode>('CNY')
 const excludeFreeNodes = ref(true)
 const financeDetailsOpen = ref(false)
 const currentTime = useNow({ interval: 1000 })
+const COUNTRY_CODE = /^[A-Z]{2}$/
 const summaryNodes = computed(() => props.nodes ?? nodesStore.visibleNodes)
 const mapNodes = computed(() => props.globeNodes ?? summaryNodes.value)
 const { regionClusters } = useNodeGeoClusters({ nodes: () => mapNodes.value })
@@ -84,7 +85,7 @@ const litRegionCount = computed(() => {
   const codes = new Set<string>()
   for (const cluster of regionClusters.value) {
     const code = cluster.code.toUpperCase()
-    if (/^[A-Z]{2}$/.test(code))
+    if (COUNTRY_CODE.test(code))
       codes.add(code)
   }
   return codes.size

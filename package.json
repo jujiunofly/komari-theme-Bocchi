@@ -23,7 +23,7 @@
     "publish": "bun scripts/publish.ts",
     "sync:admin": "bun scripts/sync-komari-admin.ts",
     "test:visual": "bun run build-only && playwright test",
-    "test:visual:update": "bun run build-only && playwright test --update-snapshots",
+    "test:visual:update": "bun run build-only && playwright test --update-snapshots=all",
     "lint": "eslint . --fix --cache",
     "lint:eslint": "eslint . --fix --cache"
   },
