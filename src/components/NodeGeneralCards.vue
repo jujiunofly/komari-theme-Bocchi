@@ -439,7 +439,8 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
         label: '内存',
         icon: 'icon-park-outline:memory',
         value: formattedMemoryUsed.value.value,
-        unit: `${formattedMemoryUsed.value.unit} / ${formattedMemoryTotal.value.value} ${formattedMemoryTotal.value.unit}`,
+        unit: formattedMemoryUsed.value.unit,
+        tooltip: `${formattedMemoryUsed.value.value} ${formattedMemoryUsed.value.unit} / ${formattedMemoryTotal.value.value} ${formattedMemoryTotal.value.unit}`,
       }
     case 'disk':
       return {
@@ -447,7 +448,8 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
         label: '硬盘',
         icon: 'tabler:server-2',
         value: formattedDiskUsed.value.value,
-        unit: `${formattedDiskUsed.value.unit} / ${formattedDiskTotal.value.value} ${formattedDiskTotal.value.unit}`,
+        unit: formattedDiskUsed.value.unit,
+        tooltip: `${formattedDiskUsed.value.value} ${formattedDiskUsed.value.unit} / ${formattedDiskTotal.value.value} ${formattedDiskTotal.value.unit}`,
       }
     case 'remainingValue':
       return {
@@ -488,7 +490,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
         label: '在线',
         icon: 'tabler:activity-heartbeat',
         value: formatCount(onlineNodeCount.value),
-        unit: `/ ${formatCount(totalNodeCount.value)}`,
+        unit: ` / ${formatCount(totalNodeCount.value)}`,
       }
     case 'avgCpu':
       return {
@@ -722,7 +724,7 @@ const cardPositionClasses = [
   'col-span-6 md:col-span-4 row-span-1',
   'col-span-6 md:col-span-4 row-span-1',
 ]
-const unitClass = 'min-w-0 text-2xl font-bold leading-none text-muted-foreground md:text-3xl'
+const unitClass = 'text-[10px] md:text-[11px] font-medium text-muted-foreground truncate'
 
 function getCardPositionClass(index: number): string {
   if (!showEarth.value)
@@ -815,10 +817,10 @@ onMounted(async () => {
             <Transition v-bind="metricSwitchTransitionProps">
               <div
                 :key="`${card.key}-${summaryTransitionKey}`"
-                class="flex min-w-0 flex-wrap items-baseline gap-x-1.5 gap-y-0.5"
+                class="flex min-w-0 items-baseline"
                 :style="getMetricSwitchStyle(index)"
               >
-                <span class="shrink-0 text-3xl font-bold leading-none tracking-tight md:text-4xl">
+                <span class="text-md md:text-2xl font-bold leading-none tracking-tight truncate">
                   {{ card.value }}
                 </span>
                 <span v-if="card.unit" :class="unitClass">
@@ -852,9 +854,9 @@ onMounted(async () => {
 <style scoped>
 .gloria-stat-card__label {
   max-width: calc(100% - 1.35rem);
-  font-size: 0.82rem;
-  line-height: 1.3;
-  letter-spacing: 0.04em;
+  font-size: clamp(0.49rem, 0.62vw, 0.64rem);
+  line-height: 1.25;
+  letter-spacing: 0.045em;
   white-space: nowrap;
 }
 
