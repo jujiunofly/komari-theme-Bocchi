@@ -58,8 +58,10 @@ onBeforeUnmount(() => {
           <span class="gloria-easter__veil" aria-hidden="true" />
           <span v-for="index in 18" :key="index" class="gloria-easter__star" :style="{ '--star-index': index }" aria-hidden="true">✦</span>
           <span class="gloria-easter__content">
-            <LineGuitar class="gloria-easter__gem" />
-            <small>{{ appStore.easterEyebrow }}</small>
+            <span class="gloria-easter__crest">
+              <LineGuitar class="gloria-easter__gem" />
+              <small>{{ appStore.easterEyebrow }}</small>
+            </span>
             <strong :style="easterSloganStyle">{{ easterMessage }}</strong>
             <em>{{ appStore.easterSignature }}</em>
           </span>
@@ -210,16 +212,26 @@ onBeforeUnmount(() => {
     linear-gradient(0deg, rgb(2 3 13 / 0.76), transparent 44%, rgb(2 3 13 / 0.32));
 }
 .gloria-easter__content {
-  position: relative;
+  --easter-tracking: 0.12em;
+  position: absolute;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 1.5rem;
+  inset: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto minmax(0, 1fr);
+  justify-items: center;
+  padding: clamp(1rem, 3.6vw, 2rem) clamp(1rem, 3.2vw, 1.6rem);
   text-align: center;
   text-shadow:
     0 3px 24px #02030d,
     0 0 34px #02030d;
+}
+.gloria-easter__crest {
+  display: flex;
+  align-items: center;
+  align-self: end;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.5vw, 0.95rem);
+  margin-bottom: clamp(0.7rem, 2.2vw, 1.35rem);
 }
 .gloria-easter__gem {
   width: clamp(4.5rem, 12vw, 8rem);
@@ -229,26 +241,28 @@ onBeforeUnmount(() => {
   animation: gloria-gem-awaken 2.4s ease-in-out infinite;
 }
 .gloria-easter__content small {
-  margin-top: 1rem;
   color: #9be9ff;
   font-family: var(--font-display);
   font-size: clamp(0.62rem, 1.5vw, 0.92rem);
   letter-spacing: 0.22em;
 }
 .gloria-easter__content strong {
-  margin-top: 0.75rem;
+  align-self: center;
+  margin-right: calc(var(--easter-tracking) * -1);
   color: #fff7d6;
   font-family: var(--font-display);
-  font-size: clamp(2.2rem, 7vw, 5.8rem);
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: var(--easter-tracking);
+  line-height: 1.14;
+  text-wrap: balance;
   text-shadow:
     0 4px 26px #02030d,
     0 0 26px rgb(255 79 163 / 0.66),
     0 0 64px rgb(139 92 246 / 0.74);
 }
 .gloria-easter__content em {
-  margin-top: 0.55rem;
+  align-self: start;
+  margin-top: clamp(0.5rem, 1.6vw, 0.85rem);
   color: rgb(255 183 213 / 0.92);
   font-family: var(--font-display);
   font-size: clamp(0.62rem, 1.7vw, 1rem);
@@ -355,8 +369,8 @@ onBeforeUnmount(() => {
     object-position: 50% 46%;
     opacity: 0.38;
   }
-  .gloria-easter__content strong {
-    letter-spacing: 0.07em;
+  .gloria-easter__content {
+    --easter-tracking: 0.07em;
   }
 }
 @media (prefers-reduced-motion: reduce) {

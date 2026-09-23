@@ -1128,8 +1128,8 @@ const useAppStore = defineStore('app', () => {
 
   const easterEyebrow = computed(() => readStringSetting(themeSettings.value, 'easterEyebrow', '结束またね') || '结束またね')
   const easterSignature = computed(() => readStringSetting(themeSettings.value, 'easterSignature', '波奇ちゃん') || '波奇ちゃん')
-  const easterMapSlogan = computed(() => readStringSetting(themeSettings.value, 'easterMapSlogan', '即使结束了，也要再见。') || '即使结束了，也要再见。')
-  const easterAvatarSlogan = computed(() => readStringSetting(themeSettings.value, 'easterAvatarSlogan', '即使孤独，也要向前。') || '即使孤独，也要向前。')
+  const easterMapSlogan = computed(() => readStringSetting(themeSettings.value, 'easterMapSlogan', '即使结束，也要再见') || '即使结束，也要再见')
+  const easterAvatarSlogan = computed(() => readStringSetting(themeSettings.value, 'easterAvatarSlogan', '即使孤独，也要向前') || '即使孤独，也要向前')
   const easterSloganMin = computed(() => readNumberSetting(themeSettings.value, 'easterSloganMin', 2.2, 0.8, 8))
   const easterSloganFluid = computed(() => readNumberSetting(themeSettings.value, 'easterSloganFluid', 7, 1, 20))
   const easterSloganMax = computed(() => readNumberSetting(themeSettings.value, 'easterSloganMax', 5.8, 1, 12))

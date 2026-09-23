@@ -174,14 +174,14 @@
         "key": "easterMapSlogan",
         "name": "地图彩蛋中间文字",
         "type": "string",
-        "default": "即使结束了，也要再见。",
+        "default": "即使结束，也要再见",
         "help": "点击地图右上角按钮后，画面中间的那一句。字号与头像彩蛋相同。"
       },
       {
         "key": "easterAvatarSlogan",
         "name": "头像彩蛋中间文字",
         "type": "string",
-        "default": "即使孤独，也要向前。",
+        "default": "即使孤独，也要向前",
         "help": "点击左上角头像后，画面中间的那一句。字号与地图彩蛋相同。"
       },
       {
