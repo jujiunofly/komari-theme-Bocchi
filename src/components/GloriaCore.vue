@@ -19,6 +19,11 @@ const easterAlt = computed(() => isReflectionEaster.value
   ? '波奇酱明亮背景'
   : '波奇酱夜里背景')
 const easterMessage = computed(() => isReflectionEaster.value ? appStore.easterAvatarSlogan : appStore.easterMapSlogan)
+const easterSloganStyle = computed(() => {
+  const min = Math.min(appStore.easterSloganMin, appStore.easterSloganMax)
+  const max = Math.max(appStore.easterSloganMin, appStore.easterSloganMax)
+  return { fontSize: `clamp(${min}rem, ${appStore.easterSloganFluid}vw, ${max}rem)` }
+})
 
 function revealEasterEgg(event?: Event): void {
   const detail = event instanceof CustomEvent ? event.detail as { variant?: string } | undefined : undefined
@@ -55,7 +60,7 @@ onBeforeUnmount(() => {
           <span class="gloria-easter__content">
             <LineGuitar class="gloria-easter__gem" />
             <small>{{ appStore.easterEyebrow }}</small>
-            <strong>{{ easterMessage }}</strong>
+            <strong :style="easterSloganStyle">{{ easterMessage }}</strong>
             <em>{{ appStore.easterSignature }}</em>
           </span>
         </button>

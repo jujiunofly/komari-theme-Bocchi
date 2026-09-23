@@ -2,7 +2,7 @@
   "name": "Bocchi",
   "short": "Bocchi",
   "description": "波奇酱粉丝向 Komari 监控主题：粉色玻璃卡片、明暗与手机桌面四套背景、日语曲名标签",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "author": "jujiunofly",
   "url": "https://github.com/jujiunofly/komari-theme-Bocchi",
   "preview": "preview.png",
@@ -183,6 +183,27 @@
         "type": "string",
         "default": "即使孤独，也要向前。",
         "help": "点击左上角头像后，画面中间的那一句。字号与地图彩蛋相同。"
+      },
+      {
+        "key": "easterSloganMin",
+        "name": "彩蛋中间文字最小字号",
+        "type": "number",
+        "default": 2.2,
+        "help": "单位 rem，范围 0.8-8。两个彩蛋中间那句共用，小屏幕不会小于这个字号。"
+      },
+      {
+        "key": "easterSloganFluid",
+        "name": "彩蛋中间文字随屏字号",
+        "type": "number",
+        "default": 7,
+        "help": "单位 vw，范围 1-20。屏幕变宽时中间那句按这个比例变大，并被最小、最大字号夹住。"
+      },
+      {
+        "key": "easterSloganMax",
+        "name": "彩蛋中间文字最大字号",
+        "type": "number",
+        "default": 5.8,
+        "help": "单位 rem，范围 1-12。两个彩蛋中间那句共用，大屏幕不会超过这个字号。"
       },
       {
         "key": "visitorInfoEnabled",
