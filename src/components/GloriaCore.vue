@@ -2,6 +2,7 @@
 import type { NodeData } from '@/stores/nodes'
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import GloriaWorldMap from '@/components/GloriaWorldMap.vue'
+import LineGuitar from '@/components/LineGuitar.vue'
 import { useAppStore } from '@/stores/app'
 
 const props = defineProps<{ nodes?: NodeData[] }>()
@@ -41,7 +42,7 @@ onBeforeUnmount(() => {
   <section class="gloria-stage" aria-label="結束バンドのノード地図">
     <GloriaWorldMap :nodes="props.nodes" :paused="appStore.stopEarth" />
     <button type="button" data-gloria-easter-trigger="wedding" class="gloria-stage__egg" title="呼一下波奇" aria-label="呼一下波奇" @click="revealEasterEgg">
-      <span>◇</span><small>BOCCHI</small>
+      <LineGuitar class="size-4" /><small>BOCCHI</small>
     </button>
 
     <Teleport to="body">
@@ -52,7 +53,7 @@ onBeforeUnmount(() => {
           <span class="gloria-easter__veil" aria-hidden="true" />
           <span v-for="index in 18" :key="index" class="gloria-easter__star" :style="{ '--star-index': index }" aria-hidden="true">✦</span>
           <span class="gloria-easter__content">
-            <span class="gloria-easter__gem" aria-hidden="true">◇</span>
+            <LineGuitar class="gloria-easter__gem" />
             <small>结束后见</small>
             <strong :class="{ 'gloria-easter__message--reflection': isReflectionEaster }">{{ easterMessage }}</strong>
             <em>波奇酱</em>
@@ -134,10 +135,9 @@ onBeforeUnmount(() => {
   background: rgb(24 18 54 / 0.86);
   transform: translateY(-1px) scale(1.04);
 }
-.gloria-stage__egg span {
-  font-size: 0.95rem;
-  line-height: 0.8;
-  text-shadow: 0 0 12px currentColor;
+.gloria-stage__egg svg {
+  color: #ff4fa3;
+  filter: drop-shadow(0 0 6px currentColor);
   animation: gloria-egg-beacon 2.8s ease-in-out infinite;
 }
 .gloria-stage__egg small {
@@ -190,13 +190,10 @@ onBeforeUnmount(() => {
     0 0 34px #02030d;
 }
 .gloria-easter__gem {
-  color: #fde68a;
-  font-size: clamp(3.4rem, 9vw, 7rem);
-  line-height: 0.75;
-  text-shadow:
-    0 0 18px #fde68a,
-    0 0 54px #f472b6,
-    0 0 96px #8b5cf6;
+  width: clamp(4.5rem, 12vw, 8rem);
+  height: clamp(4.5rem, 12vw, 8rem);
+  color: #ffb7d5;
+  filter: drop-shadow(0 0 12px #ffb7d5) drop-shadow(0 0 28px #ff4fa3);
   animation: gloria-gem-awaken 2.4s ease-in-out infinite;
 }
 .gloria-easter__content small {
@@ -346,7 +343,7 @@ onBeforeUnmount(() => {
 @media (prefers-reduced-motion: reduce) {
   .gloria-stage__egg::before,
   .gloria-stage__egg::after,
-  .gloria-stage__egg span,
+  .gloria-stage__egg svg,
   .gloria-easter__backdrop,
   .gloria-easter__gem,
   .gloria-easter__star {

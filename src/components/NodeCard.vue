@@ -2,6 +2,7 @@
 import type { NodeData } from '@/stores/nodes'
 import { Icon } from '@iconify/vue'
 import { computed, onBeforeUnmount } from 'vue'
+import LineGuitar from '@/components/LineGuitar.vue'
 import { Badge } from '@/components/ui/badge'
 import { CardX } from '@/components/ui/card-x'
 import { DataTooltip } from '@/components/ui/data-tooltip'
@@ -254,13 +255,9 @@ function hasRegion(region: string | null | undefined): boolean {
     <!-- 头部：在线点 + 名称 -->
     <template #header>
       <div class="flex items-center gap-2 min-w-0">
-        <Icon
-          icon="icon-park-outline:guitar"
-          width="16"
-          height="16"
-          class="gloria-node-guitar shrink-0"
+        <LineGuitar
+          class="gloria-node-guitar size-4 shrink-0"
           :class="props.node.online ? 'gloria-node-guitar--online' : 'gloria-node-guitar--sleeping'"
-          aria-hidden="true"
         />
         <div class="flex min-w-0 flex-1 flex-col">
           <span class="text-sm font-bold min-w-0 truncate">{{ props.node.name }}</span>
@@ -691,11 +688,12 @@ function hasRegion(region: string | null | undefined): boolean {
           <Badge
             v-if="appStore.fanLabelsEnabled"
             variant="outline"
-            class="gloria-track-tag !text-[10px] rounded-full px-2 py-0"
+            class="gloria-track-tag inline-flex items-center gap-1 !text-[10px] rounded-full px-2 py-0"
             :title="audioPreviewAvailable ? `悬停试听《${props.fanTrack}》片段` : undefined"
           >
             <Icon v-if="audioPreviewAvailable" icon="tabler:volume" width="11" height="11" aria-hidden="true" />
-            ◇ {{ gloriaTrackLabel }}
+            <LineGuitar class="size-3" />
+            {{ gloriaTrackLabel }}
           </Badge>
           <Badge
             v-for="(tag, i) in customTags" :key="i"
@@ -747,9 +745,13 @@ function hasRegion(region: string | null | undefined): boolean {
 }
 
 .gloria-track-tag {
-  border-color: rgb(155 92 255 / 0.34) !important;
-  background: linear-gradient(90deg, rgb(155 92 255 / 0.1), rgb(255 122 200 / 0.08));
-  color: #d8c9ff !important;
+  border-color: rgb(255 79 163 / 0.34) !important;
+  background: linear-gradient(90deg, rgb(255 79 163 / 0.1), rgb(255 183 213 / 0.08));
+  color: #ffd0e6 !important;
+}
+
+.gloria-track-tag svg {
+  color: #ff4fa3;
 }
 
 .node-ping-task-grid {

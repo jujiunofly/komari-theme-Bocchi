@@ -438,16 +438,16 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
         key: 'memory',
         label: '内存',
         icon: 'icon-park-outline:memory',
-        value: formattedMemoryUsed.value.value,
-        unit: `${formattedMemoryUsed.value.unit} / ${formattedMemoryTotal.value.value} ${formattedMemoryTotal.value.unit}`,
+        value: `${formattedMemoryUsed.value.value}${formattedMemoryUsed.value.unit}`,
+        tooltip: `${formattedMemoryUsed.value.value} ${formattedMemoryUsed.value.unit} / ${formattedMemoryTotal.value.value} ${formattedMemoryTotal.value.unit}`,
       }
     case 'disk':
       return {
         key: 'disk',
         label: '硬盘',
         icon: 'tabler:server-2',
-        value: formattedDiskUsed.value.value,
-        unit: `${formattedDiskUsed.value.unit} / ${formattedDiskTotal.value.value} ${formattedDiskTotal.value.unit}`,
+        value: `${formattedDiskUsed.value.value}${formattedDiskUsed.value.unit}`,
+        tooltip: `${formattedDiskUsed.value.value} ${formattedDiskUsed.value.unit} / ${formattedDiskTotal.value.value} ${formattedDiskTotal.value.unit}`,
       }
     case 'remainingValue':
       return {
@@ -488,7 +488,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
         label: '在线',
         icon: 'tabler:activity-heartbeat',
         value: formatCount(onlineNodeCount.value),
-        unit: `/ ${formatCount(totalNodeCount.value)}`,
+        tooltip: `${formatCount(onlineNodeCount.value)} / ${formatCount(totalNodeCount.value)}`,
       }
     case 'avgCpu':
       return {
