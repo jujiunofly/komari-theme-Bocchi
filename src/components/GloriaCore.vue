@@ -94,11 +94,11 @@ onBeforeUnmount(() => {
   display: grid;
   min-width: 4.25rem;
   place-items: center;
-  border: 1px solid rgb(253 230 138 / 0.42);
+  border: 1px solid rgb(255 79 163 / 0.55);
   border-radius: 999px;
-  background: rgb(5 8 22 / 0.72);
+  background: rgb(36 10 24 / 0.72);
   padding: 0.32rem 0.52rem;
-  color: #fde68a;
+  color: #ffd0e6;
   backdrop-filter: blur(10px);
   box-shadow: 0 0 18px rgb(244 114 182 / 0.18);
   isolation: isolate;
@@ -111,7 +111,7 @@ onBeforeUnmount(() => {
   position: absolute;
   z-index: -1;
   inset: -0.18rem;
-  border: 1px solid rgb(253 230 138 / 0.64);
+  border: 1px solid rgb(255 143 184 / 0.7);
   border-radius: inherit;
   content: '';
   pointer-events: none;
@@ -121,23 +121,22 @@ onBeforeUnmount(() => {
   position: absolute;
   top: -0.2rem;
   right: 0.22rem;
-  color: #fff5bd;
+  color: #ff8ac4;
   content: '✦';
   font-size: 0.48rem;
   pointer-events: none;
   text-shadow:
-    0 0 9px #fde68a,
-    0 0 16px #f472b6;
+    0 0 9px #ff4fa3,
+    0 0 16px #ffb7d5;
   animation: gloria-egg-spark 3.4s ease-in-out infinite;
 }
 .gloria-stage__egg:hover {
-  border-color: rgb(253 230 138 / 0.9);
-  background: rgb(24 18 54 / 0.86);
+  border-color: rgb(255 79 163 / 0.9);
+  background: rgb(58 16 36 / 0.88);
   transform: translateY(-1px) scale(1.04);
 }
-.gloria-stage__egg svg {
-  color: #ff4fa3;
-  filter: drop-shadow(0 0 6px currentColor);
+.gloria-stage__egg img {
+  filter: drop-shadow(0 0 6px rgb(255 79 163 / 0.85));
   animation: gloria-egg-beacon 2.8s ease-in-out infinite;
 }
 .gloria-stage__egg small {
@@ -212,7 +211,7 @@ onBeforeUnmount(() => {
   letter-spacing: 0.12em;
   text-shadow:
     0 4px 26px #02030d,
-    0 0 26px rgb(253 230 138 / 0.66),
+    0 0 26px rgb(255 79 163 / 0.66),
     0 0 64px rgb(139 92 246 / 0.74);
 }
 .gloria-easter__message--reflection {
@@ -221,7 +220,7 @@ onBeforeUnmount(() => {
 }
 .gloria-easter__content em {
   margin-top: 0.55rem;
-  color: rgb(253 230 138 / 0.86);
+  color: rgb(255 183 213 / 0.92);
   font-family: var(--font-display);
   font-size: clamp(0.62rem, 1.7vw, 1rem);
   font-style: normal;
@@ -257,16 +256,11 @@ onBeforeUnmount(() => {
   0%,
   100% {
     transform: scale(0.92);
-    color: #f5dc80;
-    text-shadow: 0 0 7px rgb(253 230 138 / 0.56);
+    filter: drop-shadow(0 0 6px rgb(255 79 163 / 0.55));
   }
   50% {
     transform: scale(1.13);
-    color: #fff9d8;
-    text-shadow:
-      0 0 9px #fde68a,
-      0 0 22px #f472b6,
-      0 0 34px #8b5cf6;
+    filter: drop-shadow(0 0 10px #ff4fa3) drop-shadow(0 0 18px #ffb7d5);
   }
 }
 @keyframes gloria-egg-signal {
@@ -343,7 +337,7 @@ onBeforeUnmount(() => {
 @media (prefers-reduced-motion: reduce) {
   .gloria-stage__egg::before,
   .gloria-stage__egg::after,
-  .gloria-stage__egg svg,
+  .gloria-stage__egg img,
   .gloria-easter__backdrop,
   .gloria-easter__gem,
   .gloria-easter__star {

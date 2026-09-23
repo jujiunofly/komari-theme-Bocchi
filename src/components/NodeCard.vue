@@ -728,12 +728,11 @@ function hasRegion(region: string | null | undefined): boolean {
 }
 
 .gloria-node-guitar--online {
-  color: #ff4fa3;
-  filter: drop-shadow(0 0 6px rgb(255 79 163 / 0.55));
+  filter: drop-shadow(0 0 4px rgb(255 79 163 / 0.45));
 }
 
 .gloria-node-guitar--sleeping {
-  color: #c47a96;
+  opacity: 0.45;
 }
 
 .gloria-node-state {
