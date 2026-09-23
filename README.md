@@ -9,6 +9,7 @@
 - 主题版本：`1.0.0`，版本号只写在 [komari-theme.json](komari-theme.json)
 - 技术栈：Vue 3 + Vite + reka-ui + Tailwind CSS v4
 - 后端基线：Komari 1.2.6，主题只提供 `/` 与 `/instance/:id` 两个公开路由，管理操作仍然交给 Komari 官方后台
+- 布局和数据沿用 [Gloria Universe](https://github.com/TonyStarkJr2021/komari-theme-Gloria-Universe)。
 
 ## 特色
 
@@ -17,79 +18,6 @@
 - **两个彩蛋**：点击地图右上角按钮是夜里波奇，点击左上角头像是明亮波奇，画面正中那一句话的文案、上方短句、下方署名和字号都可以在设置里改。
 - **歌曲标签与试听**：节点名可以是曲名，悬停时播放管理员自己放进主题里的音频片段，地区与曲目的对应关系也在设置里。
 - **节点卡片与详情页**：四档卡片尺寸、卡片 / 列表两种视图、快捷筛选、离线置底、流量与到期预警、磁盘耗尽预测、详情概览卡片与负载 / 延迟图表。
-
-## 截图
-
-下面的图都是 `bun run test:visual` 跑出来的视觉快照，文件就在 [tests/visual/snapshots/chromium](tests/visual/snapshots/chromium)。
-
-### 首页
-
-<table>
-  <tr>
-    <td width="50%"><img src="tests/visual/snapshots/chromium/home-light-desktop.png" alt="首页 · 明亮模式 · 桌面" width="100%"></td>
-    <td width="50%"><img src="tests/visual/snapshots/chromium/home-dark-mobile.png" alt="首页 · 夜里模式 · 手机" width="100%"></td>
-  </tr>
-  <tr>
-    <td align="center">明亮模式 · 桌面 1280 × 720</td>
-    <td align="center">夜里模式 · 手机 390 × 844</td>
-  </tr>
-</table>
-
-<table>
-  <tr>
-    <td width="50%"><img src="tests/visual/snapshots/chromium/home-tiled-desktop.png" alt="首页 · 网格地图" width="100%"></td>
-    <td width="50%"><img src="tests/visual/snapshots/chromium/home-accessible-list-desktop.png" alt="首页 · 列表视图" width="100%"></td>
-  </tr>
-  <tr>
-    <td align="center">首页 · 网格地图布局</td>
-    <td align="center">首页 · 列表视图</td>
-  </tr>
-</table>
-
-### 节点详情
-
-<table>
-  <tr>
-    <td width="50%"><img src="tests/visual/snapshots/chromium/detail-light-desktop.png" alt="节点详情 · 明亮模式" width="100%"></td>
-    <td width="50%"><img src="tests/visual/snapshots/chromium/detail-dark-mobile.png" alt="节点详情 · 夜里模式 · 手机" width="100%"></td>
-  </tr>
-  <tr>
-    <td align="center">详情 · 明亮模式 · 桌面</td>
-    <td align="center">详情 · 夜里模式 · 手机</td>
-  </tr>
-</table>
-
-### 两个彩蛋
-
-点击地图右上角按钮（写着 `BOCCHI` 的那个）打开地图彩蛋，点击左上角头像打开头像彩蛋。两个彩蛋共用同一档字号，中间那一句都固定在画面正中。
-
-<table>
-  <tr>
-    <td width="50%"><img src="tests/visual/snapshots/chromium/gloria-easter-desktop.png" alt="地图彩蛋" width="100%"></td>
-    <td width="50%"><img src="tests/visual/snapshots/chromium/gloria-reflection-easter-desktop.png" alt="头像彩蛋" width="100%"></td>
-  </tr>
-  <tr>
-    <td align="center">地图彩蛋（夜里波奇）</td>
-    <td align="center">头像彩蛋（明亮波奇）</td>
-  </tr>
-</table>
-
-<p align="center">
-  <img src="tests/visual/snapshots/chromium/gloria-reflection-easter-mobile.png" alt="头像彩蛋 · 手机" width="300">
-</p>
-
-### 访客与管理员视角
-
-<table>
-  <tr>
-    <td width="50%"><img src="tests/visual/snapshots/chromium/deep-space-guest-desktop.png" alt="访客视角 · 深空" width="100%"></td>
-    <td width="50%"><img src="tests/visual/snapshots/chromium/starlight-guest-desktop.png" alt="访客视角 · 星光" width="100%"></td>
-  </tr>
-  <tr>
-    <td align="center">未登录访客 · 深空</td>
-    <td align="center">未登录访客 · 星光</td>
-  </tr>
-</table>
 
 ## 背景
 
