@@ -41,7 +41,7 @@ onBeforeUnmount(() => {
 <template>
   <section class="gloria-stage" aria-label="結束バンドのノード地図">
     <GloriaWorldMap :nodes="props.nodes" :paused="appStore.stopEarth" />
-    <button type="button" data-gloria-easter-trigger="wedding" class="gloria-stage__egg" title="呼一下波奇" aria-label="呼一下波奇" @click="revealEasterEgg">
+    <button type="button" data-gloria-easter-trigger="wedding" class="gloria-stage__egg" :class="{ 'is-light': !appStore.isDark }" title="呼一下波奇" aria-label="呼一下波奇" @click="revealEasterEgg">
       <LineGuitar class="size-4" /><small>BOCCHI</small>
     </button>
 
@@ -131,20 +131,20 @@ onBeforeUnmount(() => {
   animation: gloria-egg-spark 3.4s ease-in-out infinite;
 }
 
-:global(:root:not(.dark)) .gloria-stage__egg {
+.gloria-stage__egg.is-light {
   border-color: rgb(232 90 140 / 0.45);
-  background: rgb(255 255 255 / 0.88);
-  color: #c43b6e;
+  background: rgb(255 255 255 / 0.92);
+  color: #e85a8c;
   box-shadow: 0 8px 22px rgb(232 90 140 / 0.16);
 }
 
-:global(:root:not(.dark)) .gloria-stage__egg::before {
+.gloria-stage__egg.is-light::before {
   border-color: rgb(232 90 140 / 0.38);
 }
 
-:global(:root:not(.dark)) .gloria-stage__egg::after {
-  color: #e85a8c;
-  text-shadow: 0 0 8px rgb(255 79 163 / 0.4);
+.gloria-stage__egg.is-light::after {
+  color: #ff4fa3;
+  text-shadow: 0 0 8px rgb(255 79 163 / 0.35);
 }
 
 .gloria-stage__egg:hover {
@@ -153,13 +153,19 @@ onBeforeUnmount(() => {
   transform: translateY(-1px) scale(1.04);
 }
 
-:global(:root:not(.dark)) .gloria-stage__egg:hover {
+.gloria-stage__egg.is-light:hover {
   border-color: rgb(232 90 140 / 0.72);
-  background: rgb(255 245 249 / 0.96);
+  background: #fff5f9;
+  color: #e85a8c;
 }
-.gloria-stage__egg img {
+.gloria-stage__egg svg {
+  color: #ffb7d5;
   filter: drop-shadow(0 0 6px rgb(255 79 163 / 0.85));
   animation: gloria-egg-beacon 2.8s ease-in-out infinite;
+}
+.gloria-stage__egg.is-light svg {
+  color: #e85a8c;
+  filter: none;
 }
 .gloria-stage__egg small {
   margin-top: 0.14rem;
@@ -351,7 +357,7 @@ onBeforeUnmount(() => {
 @media (prefers-reduced-motion: reduce) {
   .gloria-stage__egg::before,
   .gloria-stage__egg::after,
-  .gloria-stage__egg img,
+  .gloria-stage__egg svg,
   .gloria-easter__backdrop,
   .gloria-easter__gem,
   .gloria-easter__star {

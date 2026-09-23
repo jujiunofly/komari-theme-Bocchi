@@ -728,12 +728,14 @@ function hasRegion(region: string | null | undefined): boolean {
 }
 
 .gloria-node-guitar--online {
+  color: #ff4fa3;
   transform-origin: center;
   animation: bocchi-guitar-breath 2.6s ease-in-out infinite;
 }
 
 .gloria-node-guitar--sleeping {
-  opacity: 0.45;
+  color: #e7a3bf;
+  opacity: 0.55;
 }
 
 .gloria-node-state {
