@@ -38,7 +38,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="gloria-stage" aria-label="结束乐队节点地图">
+  <section class="gloria-stage" aria-label="結束バンドのノード地図">
     <GloriaWorldMap :nodes="props.nodes" :paused="appStore.stopEarth" />
     <button type="button" data-gloria-easter-trigger="wedding" class="gloria-stage__egg" title="呼一下波奇" aria-label="呼一下波奇" @click="revealEasterEgg">
       <span>◇</span><small>BOCCHI</small>
@@ -71,7 +71,7 @@ onBeforeUnmount(() => {
   overflow: hidden;
   border: 1px solid rgb(255 79 163 / 0.28);
   border-radius: 1.1rem;
-  background: #030512;
+  background: #140812;
   box-shadow:
     inset 0 1px rgb(255 255 255 / 0.06),
     0 18px 48px rgb(0 0 0 / 0.24);
@@ -82,8 +82,8 @@ onBeforeUnmount(() => {
   background: rgb(255 255 255 / 0.76);
   box-shadow:
     inset 0 1px rgb(255 255 255 / 0.94),
-    0 16px 40px rgb(91 33 182 / 0.14),
-    0 5px 20px rgb(14 165 233 / 0.08);
+    0 16px 40px rgb(232 90 140 / 0.16),
+    0 5px 20px rgb(126 200 214 / 0.1);
 }
 .gloria-stage__egg {
   position: absolute;

@@ -166,15 +166,15 @@ onMounted(async () => {
 <template>
   <div class="gloria-world-map" :class="{ 'gloria-world-map--paused': paused }">
     <div class="gloria-world-map__heading">
-      <span>结束乐队地图</span>
-      <small>{{ markers.length }} 个地区 · {{ onlineServers }} / {{ totalServers }} 在线</small>
+      <span>結束バンド</span>
+      <small>{{ markers.length }} エリア · {{ onlineServers }} / {{ totalServers }} 在线</small>
     </div>
 
     <svg
       class="gloria-world-map__svg"
       viewBox="0 0 1000 500"
       role="img"
-      aria-label="节点所在国家与地区的结束乐队地图"
+      aria-label="結束バンドのノード地図"
       preserveAspectRatio="xMidYMid meet"
     >
       <defs>
@@ -236,8 +236,8 @@ onMounted(async () => {
         <span v-if="activeMarkerAudioTrack">♫ 《{{ activeMarkerAudioTrack }}》</span>
       </template>
       <template v-else>
-        <strong>结束乐队</strong>
-        <span>悬停查看这个地区的节点</span>
+        <strong>結束バンド</strong>
+        <span>ホバーで地域を見る</span>
       </template>
     </div>
   </div>
@@ -249,9 +249,9 @@ onMounted(async () => {
   inset: 0;
   overflow: hidden;
   background:
-    radial-gradient(circle at 72% 42%, rgb(139 92 246 / 0.2), transparent 31%),
-    radial-gradient(circle at 24% 68%, rgb(14 165 233 / 0.1), transparent 30%),
-    linear-gradient(135deg, #040616 0%, #090922 52%, #040615 100%);
+    radial-gradient(circle at 78% 28%, rgb(255 79 163 / 0.28), transparent 34%),
+    radial-gradient(circle at 18% 72%, rgb(126 200 214 / 0.16), transparent 32%),
+    linear-gradient(145deg, #1a0814 0%, #140812 48%, #240816 100%);
 }
 
 .gloria-world-map::before {
@@ -271,7 +271,7 @@ onMounted(async () => {
   left: 1rem;
   display: flex;
   flex-direction: column;
-  color: #93e7ff;
+  color: #ffb7d5;
   font-family: var(--font-display);
   letter-spacing: 0.13em;
   pointer-events: none;
@@ -282,7 +282,7 @@ onMounted(async () => {
 }
 .gloria-world-map__heading small {
   margin-top: 0.2rem;
-  color: rgb(221 212 255 / 0.72);
+  color: rgb(255 214 232 / 0.78);
   font-size: 0.45rem;
 }
 
@@ -295,15 +295,15 @@ onMounted(async () => {
 
 .gloria-world-map__grid path {
   fill: none;
-  stroke: rgb(96 165 250 / 0.075);
+  stroke: rgb(255 143 196 / 0.12);
   stroke-dasharray: 2 8;
   stroke-width: 0.8;
 }
 
 .gloria-world-map__countries path {
-  fill: rgb(99 102 241 / 0.105);
+  fill: rgb(255 79 163 / 0.12);
   fill-rule: evenodd;
-  stroke: rgb(147 197 253 / 0.38);
+  stroke: rgb(255 143 196 / 0.55);
   stroke-linejoin: round;
   stroke-width: 0.78;
   transition:
@@ -314,8 +314,8 @@ onMounted(async () => {
 }
 
 .gloria-world-map__countries path.is-active {
-  fill: rgb(34 197 94 / 0.37);
-  stroke: #86efac;
+  fill: rgb(255 79 163 / 0.42);
+  stroke: #ff8ac4;
   stroke-width: 2;
   filter: url(#gloria-country-glow);
 }
@@ -378,12 +378,12 @@ onMounted(async () => {
   pointer-events: none;
 }
 .gloria-world-map__status strong {
-  color: #f9f5ff;
+  color: #fff1f7;
   font-size: 0.56rem;
   letter-spacing: 0.11em;
 }
 .gloria-world-map__status span {
-  color: #75defd;
+  color: #ffb7d5;
   font-size: 0.42rem;
   letter-spacing: 0.08em;
 }
@@ -393,47 +393,47 @@ onMounted(async () => {
 
 :global(:root:not(.dark) .gloria-world-map) {
   background:
-    radial-gradient(circle at 76% 38%, rgb(167 139 250 / 0.2), transparent 34%),
-    radial-gradient(circle at 22% 70%, rgb(34 211 238 / 0.15), transparent 34%),
-    linear-gradient(135deg, rgb(255 255 255 / 0.68), rgb(238 232 255 / 0.58) 52%, rgb(232 249 255 / 0.62));
+    radial-gradient(circle at 76% 30%, rgb(255 143 184 / 0.28), transparent 36%),
+    radial-gradient(circle at 18% 74%, rgb(126 200 214 / 0.2), transparent 34%),
+    linear-gradient(145deg, rgb(255 255 255 / 0.78), rgb(255 228 240 / 0.72) 54%, rgb(232 248 252 / 0.7));
 }
 
 :global(:root:not(.dark) .gloria-world-map::before) {
   background:
-    repeating-linear-gradient(0deg, transparent 0 4px, rgb(109 53 199 / 0.035) 5px),
+    repeating-linear-gradient(0deg, transparent 0 4px, rgb(232 90 140 / 0.05) 5px),
     linear-gradient(105deg, transparent 16%, rgb(244 114 182 / 0.09) 45%, transparent 63%);
 }
 
 :global(:root:not(.dark) .gloria-world-map__heading) {
-  color: #4f2b89;
+  color: #c43b6e;
   text-shadow: 0 1px rgb(255 255 255 / 0.9);
 }
 
 :global(:root:not(.dark) .gloria-world-map__heading small) {
-  color: #594868;
+  color: #7a4d62;
 }
 
 :global(:root:not(.dark) .gloria-world-map__grid path) {
-  stroke: rgb(109 53 199 / 0.12);
+  stroke: rgb(232 90 140 / 0.16);
 }
 
 :global(:root:not(.dark) .gloria-world-map__countries path) {
-  fill: rgb(124 58 237 / 0.1);
-  stroke: rgb(79 70 229 / 0.4);
+  fill: rgb(255 143 184 / 0.16);
+  stroke: rgb(232 90 140 / 0.45);
 }
 
 :global(:root:not(.dark) .gloria-world-map__countries path.is-active) {
-  fill: rgb(34 197 94 / 0.42);
-  stroke: #15803d;
+  fill: rgb(255 79 163 / 0.34);
+  stroke: #e85a8c;
 }
 
 :global(:root:not(.dark) .gloria-world-map__status strong) {
-  color: #24113f;
+  color: #3b2433;
   text-shadow: 0 1px rgb(255 255 255 / 0.9);
 }
 
 :global(:root:not(.dark) .gloria-world-map__status span) {
-  color: #006d8f;
+  color: #c43b6e;
   font-weight: 700;
 }
 

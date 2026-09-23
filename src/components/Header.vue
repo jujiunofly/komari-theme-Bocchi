@@ -110,7 +110,7 @@ const sitename = computed(() => appStore.publicSettings?.sitename || 'Komari Mon
             {{ sitename }}
           </h1>
           <span>波奇酱</span>
-          <small>{{ sitename }} · 结束乐队</small>
+          <small>{{ sitename }} · 結束バンド</small>
         </div>
       </div>
       <TooltipProvider :delay-duration="200">

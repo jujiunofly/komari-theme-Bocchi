@@ -2,7 +2,7 @@
   "name": "Bocchi",
   "short": "Bocchi",
   "description": "波奇酱粉丝向 Komari 监控主题：粉色玻璃卡片、明暗与手机桌面四套背景、日语曲名标签",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "jujiunofly",
   "url": "https://github.com/jujiunofly/komari-theme-Bocchi",
   "preview": "preview.png",
@@ -187,7 +187,7 @@
         "help": "light*=明亮模式，dark*=夜里模式；Card=卡片，Control=控制条，Text=主文字，MutedText=次文字，Border=边框。支持 #RRGGBB 和带透明度的 #RRGGBBAA。"
       },
       {
-        "name": "03 · 首页首页总览指标",
+        "name": "03 · 首页总览指标",
         "type": "title"
       },
       {
@@ -196,14 +196,14 @@
         "type": "select",
         "default": "自定义",
         "options": "官方,基础,运维,资源,财务,流量,GPU,资产,完整,自定义",
-        "help": "当前默认与前端六项指标一一对应：内存、剩余价值、上行、硬盘、累计流量、下行。选择“自定义”后读取下方 keys。"
+        "help": "当前默认与前端六项指标一一对应：在线、内存、上行、硬盘、累计流量、下行。选择“自定义”后读取下方 keys。"
       },
       {
         "key": "generalCardKeys",
         "name": "自定义首页总览指标 keys",
         "type": "richtext",
-        "default": "memory\nremainingValue\nuploadSpeed\ndisk\ntotalTraffic\ndownloadSpeed",
-        "help": "逗号、空格或换行分隔。memory=内存；remainingValue=剩余价值；uploadSpeed=上行；disk=硬盘；totalTraffic=累计流量；downloadSpeed=下行。"
+        "default": "onlineNodes\nmemory\nuploadSpeed\ndisk\ntotalTraffic\ndownloadSpeed",
+        "help": "逗号、空格或换行分隔。onlineNodes=在线；memory=内存；uploadSpeed=上行；disk=硬盘；totalTraffic=累计流量；downloadSpeed=下行。"
       },
       {
         "name": "04 · 管理员工具与隐私",

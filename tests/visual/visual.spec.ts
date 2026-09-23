@@ -56,7 +56,7 @@ test('mobile overview keeps energy transmission and reception together on the la
   await page.setViewportSize({ width: 390, height: 844 })
   await installKomariFixture(page, {
     dark: true,
-    generalCardKeys: ['memory', 'remainingValue', 'uploadSpeed', 'disk', 'totalTraffic', 'downloadSpeed'],
+    generalCardKeys: ['onlineNodes', 'memory', 'uploadSpeed', 'disk', 'totalTraffic', 'downloadSpeed'],
   })
   await openStablePage(page)
 
@@ -68,7 +68,7 @@ test('mobile overview keeps energy transmission and reception together on the la
     }))
     .sort((left, right) => left.top - right.top || left.left - right.left)
     .map(item => item.key))
-  expect(orderedKeys).toEqual(['memory', 'remainingValue', 'disk', 'totalTraffic', 'uploadSpeed', 'downloadSpeed'])
+  expect(orderedKeys).toEqual(['onlineNodes', 'memory', 'uploadSpeed', 'disk', 'totalTraffic', 'downloadSpeed'])
 })
 
 test('mobile footer credits stay on one line', async ({ page }) => {
@@ -112,9 +112,9 @@ test('desktop quick controls keep the final item fully visible', async ({ page }
   await installKomariFixture(page, { dark: true })
   await openStablePage(page)
 
-  const expiringControl = page.getByRole('button', { name: /切换到即将到期节点/ })
+  const expiringControl = page.getByRole('button', { name: /切换到期限 · 間近节点/ })
   await expect(expiringControl).toBeVisible()
-  await expect(expiringControl.locator('.home-quick-control__label')).toHaveText('即将到期')
+  await expect(expiringControl.locator('.home-quick-control__label')).toHaveText('期限 · 間近')
   const isFullyVisible = await expiringControl.evaluate((element) => {
     const button = element.getBoundingClientRect()
     const controls = element.closest('.home-quick-controls')?.getBoundingClientRect()
@@ -410,15 +410,6 @@ test('free node pricing stays semantic across home, finance, and detail', async 
   await expect(nodeCard.getByText('免费', { exact: true })).toBeVisible()
   await expect(nodeCard.getByText('无', { exact: true })).toBeVisible()
   await expect(nodeCard.getByText('免费 / 年', { exact: true })).toHaveCount(0)
-
-  await page.getByRole('button', { name: '查看剩余价值明细' }).click()
-  const financeDialog = page.getByRole('dialog', { name: '价值与费用明细' })
-  await expect(financeDialog.getByText(freeNodeName, { exact: true })).toHaveCount(0)
-  await financeDialog.getByLabel('排除免费节点').uncheck()
-  const freeNodeRow = financeDialog.getByRole('cell', { name: freeNodeName, exact: true }).locator('..')
-  await expect(freeNodeRow).toBeVisible()
-  await expect(freeNodeRow.getByText('免费', { exact: true })).toBeVisible()
-  await expect(freeNodeRow.getByText('无', { exact: true })).toBeVisible()
 
   await page.goto(`/instance/${freeNodeUuid}`)
   await expect(page.getByText('硬件信息', { exact: true })).toBeVisible()

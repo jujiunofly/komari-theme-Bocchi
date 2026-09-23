@@ -456,7 +456,6 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
         icon: 'tabler:cash',
         value: showPrice.value ? `${formattedRemainingValue.value.symbol}${formattedRemainingValue.value.value}` : '***',
         tooltip: totalValueTooltip.value,
-        action: showPrice.value ? 'financeDetails' : undefined,
       }
     case 'totalTraffic':
       return {
@@ -486,10 +485,9 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
     case 'onlineNodes':
       return {
         key: 'onlineNodes',
-        label: '在线节点',
+        label: '在线',
         icon: 'tabler:activity-heartbeat',
-        value: formatCount(onlineNodeCount.value),
-        unit: `/ ${formatCount(totalNodeCount.value)}`,
+        value: `${formatCount(onlineNodeCount.value)} / ${formatCount(totalNodeCount.value)}`,
       }
     case 'avgCpu':
       return {
@@ -723,22 +721,13 @@ const cardPositionClasses = [
   'col-span-6 md:col-span-4 row-span-1',
   'col-span-6 md:col-span-4 row-span-1',
 ]
-const mobileCardOrderClasses: Partial<Record<GeneralCardKey, string>> = {
-  memory: 'order-1 md:order-none',
-  remainingValue: 'order-2 md:order-none',
-  disk: 'order-3 md:order-none',
-  totalTraffic: 'order-4 md:order-none',
-  uploadSpeed: 'order-5 md:order-none',
-  downloadSpeed: 'order-6 md:order-none',
-}
-const unitClass = 'text-[10px] md:text-[11px] font-medium text-muted-foreground truncate'
+const unitClass = 'text-xs md:text-sm font-medium leading-none text-muted-foreground'
 
-function getCardPositionClass(index: number, key: GeneralCardKey): string {
-  const mobileOrderClass = mobileCardOrderClasses[key] ?? 'order-7 md:order-none'
+function getCardPositionClass(index: number): string {
   if (!showEarth.value)
-    return `col-span-1 min-h-18 md:min-h-28 ${mobileOrderClass}`
+    return 'col-span-1 min-h-18 md:min-h-28'
 
-  return `${cardPositionClasses[index] ?? 'col-span-4 row-span-1'} ${mobileOrderClass}`
+  return cardPositionClasses[index] ?? 'col-span-4 row-span-1'
 }
 
 function activateCard(card: GeneralMetricCard) {
@@ -799,7 +788,7 @@ onMounted(async () => {
         :key="card.key"
         :data-general-card-key="card.key"
         hoverable
-        :class="[cardClass, getCardPositionClass(index, card.key), card.action && 'cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring']"
+        :class="[cardClass, getCardPositionClass(index), card.action && 'cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring']"
         content-class="h-full !p-3"
         :role="card.action ? 'button' : undefined"
         :tabindex="card.action ? 0 : undefined"
@@ -812,7 +801,7 @@ onMounted(async () => {
             <span class="gloria-stat-card__label min-w-0 font-medium text-muted-foreground">{{ card.label }}</span>
             <Icon
               :icon="card.icon" :width="18" :height="18"
-              class="shrink-0 text-slate-500/20 group-hover:text-slate-500 transition-colors"
+              class="shrink-0 text-primary/80 group-hover:text-primary transition-colors"
             />
           </div>
           <DataTooltip
@@ -825,10 +814,10 @@ onMounted(async () => {
             <Transition v-bind="metricSwitchTransitionProps">
               <div
                 :key="`${card.key}-${summaryTransitionKey}`"
-                class="flex items-baseline gap-1 min-w-0"
+                class="flex min-w-0 flex-col gap-1"
                 :style="getMetricSwitchStyle(index)"
               >
-                <span class="text-md md:text-2xl font-bold leading-none tracking-tight truncate">
+                <span class="text-2xl md:text-3xl font-bold leading-none tracking-tight">
                   {{ card.value }}
                 </span>
                 <span v-if="card.unit" :class="unitClass">
@@ -862,9 +851,9 @@ onMounted(async () => {
 <style scoped>
 .gloria-stat-card__label {
   max-width: calc(100% - 1.35rem);
-  font-size: clamp(0.49rem, 0.62vw, 0.64rem);
-  line-height: 1.25;
-  letter-spacing: 0.045em;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
   white-space: nowrap;
 }
 

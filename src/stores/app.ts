@@ -134,6 +134,15 @@ const BYTE_DECIMALS: ByteDecimalsConfig = {
 }
 
 const DEFAULT_GENERAL_CARD_ORDER: GeneralCardKey[] = [
+  'onlineNodes',
+  'memory',
+  'uploadSpeed',
+  'disk',
+  'totalTraffic',
+  'downloadSpeed',
+]
+
+const BOCCHI_V101_GENERAL_CARD_ORDER: GeneralCardKey[] = [
   'memory',
   'remainingValue',
   'uploadSpeed',
@@ -639,12 +648,14 @@ function parseGeneralCardPreset(value: unknown): GeneralCardPreset {
   return GENERAL_CARD_PRESET_ALIASES[value.trim()] ?? 'basic'
 }
 
+function isSameCardOrder(order: GeneralCardKey[], expected: GeneralCardKey[]): boolean {
+  return order.length === expected.length && order.every((key, index) => key === expected[index])
+}
+
 function migrateGloriaGeneralCardOrder(order: GeneralCardKey[]): GeneralCardKey[] {
-  const isLegacyGloriaOrder = order.length === LEGACY_GLORIA_GENERAL_CARD_ORDER.length
-    && order.every((key, index) => key === LEGACY_GLORIA_GENERAL_CARD_ORDER[index])
-  const isLegacyBaseOrder = order.length === LEGACY_BASE_GENERAL_CARD_ORDER.length
-    && order.every((key, index) => key === LEGACY_BASE_GENERAL_CARD_ORDER[index])
-  const isLegacyOrder = isLegacyGloriaOrder || isLegacyBaseOrder
+  const isLegacyOrder = isSameCardOrder(order, LEGACY_GLORIA_GENERAL_CARD_ORDER)
+    || isSameCardOrder(order, LEGACY_BASE_GENERAL_CARD_ORDER)
+    || isSameCardOrder(order, BOCCHI_V101_GENERAL_CARD_ORDER)
   return isLegacyOrder ? [...DEFAULT_GENERAL_CARD_ORDER] : order
 }
 
