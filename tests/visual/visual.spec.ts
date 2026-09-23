@@ -213,13 +213,13 @@ test('header theme button toggles directly between deep-space and starlight', as
   const html = page.locator('html')
   await expect(html).toHaveClass(/dark/)
 
-  await page.getByRole('button', { name: '切换到星光模式' }).click()
+  await page.getByRole('button', { name: '切换到明亮' }).click()
   await expect(html).not.toHaveClass(/dark/)
-  await expect(page.getByRole('button', { name: '切换到深空模式' })).toBeVisible()
+  await expect(page.getByRole('button', { name: '切换到夜里' })).toBeVisible()
 
-  await page.getByRole('button', { name: '切换到深空模式' }).click()
+  await page.getByRole('button', { name: '切换到夜里' }).click()
   await expect(html).toHaveClass(/dark/)
-  await expect(page.getByRole('button', { name: '切换到星光模式' })).toBeVisible()
+  await expect(page.getByRole('button', { name: '切换到明亮' })).toBeVisible()
 })
 
 test('starlight mode presents guest as a GLORIA fan', async ({ page }) => {
@@ -227,8 +227,8 @@ test('starlight mode presents guest as a GLORIA fan', async ({ page }) => {
   await installKomariFixture(page)
   await openStablePage(page)
 
-  await expect(page.getByText('棋士', { exact: true })).toBeVisible()
-  await expect(page.getByText('来自 Tokyo 的星光已接入', { exact: true })).toBeVisible()
+  await expect(page.getByText('观众', { exact: true })).toBeVisible()
+  await expect(page.getByText('来自 Tokyo 的观众已进线', { exact: true })).toBeVisible()
   await expect(page).toHaveScreenshot('starlight-guest-desktop.png', { fullPage: false })
 })
 
@@ -237,7 +237,7 @@ test('deep-space mode keeps the understated visitor glass card', async ({ page }
   await installKomariFixture(page, { dark: true })
   await openStablePage(page)
 
-  await expect(page.getByText('棋士', { exact: true })).toBeVisible()
+  await expect(page.getByText('观众', { exact: true })).toBeVisible()
   await expect(page).toHaveScreenshot('deep-space-guest-desktop.png', { fullPage: false })
 })
 
@@ -360,7 +360,7 @@ test('licensed audio mappings connect node tracks and region stars', async ({ pa
   await openStablePage(page)
 
   const card = page.getByRole('button', { name: '查看节点 主控-洛杉矶 详情' })
-  await expect(card.locator('[title="悬停试听《多远都要在一起》片段"]')).toBeVisible()
+  await expect(card.locator('[title="悬停试听《吉他与孤独与蓝色星球》片段"]')).toBeVisible()
   await card.hover()
   await expect.poll(() => page.evaluate(() => (window as typeof window & { __gloriaAudioPlaySources?: string[] }).__gloriaAudioPlaySources?.length ?? 0)).toBeGreaterThan(0)
 
