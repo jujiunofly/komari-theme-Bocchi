@@ -438,16 +438,16 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
         key: 'memory',
         label: '内存',
         icon: 'icon-park-outline:memory',
-        value: `${formattedMemoryUsed.value.value}${formattedMemoryUsed.value.unit}`,
-        tooltip: `${formattedMemoryUsed.value.value} ${formattedMemoryUsed.value.unit} / ${formattedMemoryTotal.value.value} ${formattedMemoryTotal.value.unit}`,
+        value: formattedMemoryUsed.value.value,
+        unit: `${formattedMemoryUsed.value.unit} / ${formattedMemoryTotal.value.value} ${formattedMemoryTotal.value.unit}`,
       }
     case 'disk':
       return {
         key: 'disk',
         label: '硬盘',
         icon: 'tabler:server-2',
-        value: `${formattedDiskUsed.value.value}${formattedDiskUsed.value.unit}`,
-        tooltip: `${formattedDiskUsed.value.value} ${formattedDiskUsed.value.unit} / ${formattedDiskTotal.value.value} ${formattedDiskTotal.value.unit}`,
+        value: formattedDiskUsed.value.value,
+        unit: `${formattedDiskUsed.value.unit} / ${formattedDiskTotal.value.value} ${formattedDiskTotal.value.unit}`,
       }
     case 'remainingValue':
       return {
@@ -488,7 +488,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
         label: '在线',
         icon: 'tabler:activity-heartbeat',
         value: formatCount(onlineNodeCount.value),
-        tooltip: `${formatCount(onlineNodeCount.value)} / ${formatCount(totalNodeCount.value)}`,
+        unit: `/ ${formatCount(totalNodeCount.value)}`,
       }
     case 'avgCpu':
       return {
@@ -722,7 +722,7 @@ const cardPositionClasses = [
   'col-span-6 md:col-span-4 row-span-1',
   'col-span-6 md:col-span-4 row-span-1',
 ]
-const unitClass = 'min-w-0 text-xs font-medium leading-tight text-muted-foreground md:text-sm'
+const unitClass = 'min-w-0 text-2xl font-bold leading-none text-muted-foreground md:text-3xl'
 
 function getCardPositionClass(index: number): string {
   if (!showEarth.value)
@@ -815,10 +815,10 @@ onMounted(async () => {
             <Transition v-bind="metricSwitchTransitionProps">
               <div
                 :key="`${card.key}-${summaryTransitionKey}`"
-                class="flex min-w-0 items-baseline gap-1.5"
+                class="flex min-w-0 flex-wrap items-baseline gap-x-1.5 gap-y-0.5"
                 :style="getMetricSwitchStyle(index)"
               >
-                <span class="shrink-0 text-2xl font-bold leading-none tracking-tight md:text-3xl">
+                <span class="shrink-0 text-3xl font-bold leading-none tracking-tight md:text-4xl">
                   {{ card.value }}
                 </span>
                 <span v-if="card.unit" :class="unitClass">
