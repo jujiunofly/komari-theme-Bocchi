@@ -487,7 +487,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
     case 'onlineNodes':
       return {
         key: 'onlineNodes',
-        label: '在线',
+        label: '点亮地区',
         icon: 'tabler:activity-heartbeat',
         value: formatCount(onlineNodeCount.value),
         unit: `/ ${formatCount(totalNodeCount.value)}`,

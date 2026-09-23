@@ -728,7 +728,8 @@ function hasRegion(region: string | null | undefined): boolean {
 }
 
 .gloria-node-guitar--online {
-  filter: drop-shadow(0 0 4px rgb(255 79 163 / 0.45));
+  transform-origin: center;
+  animation: bocchi-guitar-breath 2.6s ease-in-out infinite;
 }
 
 .gloria-node-guitar--sleeping {
@@ -758,8 +759,21 @@ function hasRegion(region: string | null | undefined): boolean {
   grid-template-columns: minmax(3rem, 0.62fr) minmax(0, 1fr) minmax(0, 1fr);
 }
 
+@keyframes bocchi-guitar-breath {
+  0%,
+  100% {
+    transform: scale(0.92);
+    filter: drop-shadow(0 0 2px rgb(255 79 163 / 0.35));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 5px #ff4fa3) drop-shadow(0 0 9px rgb(255 183 213 / 0.75));
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gloria-node-guitar--online {
+    animation: none;
     filter: none;
   }
 }

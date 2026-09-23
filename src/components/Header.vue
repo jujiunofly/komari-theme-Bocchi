@@ -109,7 +109,7 @@ const sitename = computed(() => appStore.publicSettings?.sitename || 'Komari Mon
           <h1 class="sr-only">
             {{ sitename }}
           </h1>
-          <span>波奇酱</span>
+          <span>波奇ちゃん</span>
           <small>{{ sitename }} · 結束バンド</small>
         </div>
       </div>

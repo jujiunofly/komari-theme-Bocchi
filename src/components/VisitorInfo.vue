@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
+import LineGuitar from '@/components/LineGuitar.vue'
 import { useAppStore } from '@/stores/app'
 
 interface VisitorData {
@@ -25,6 +26,7 @@ const appStore = useAppStore()
 
 const show = ref(false)
 const dismissed = ref(false)
+const pillDismissed = ref(false)
 const visitorLoading = ref(true)
 const visitorFailed = ref(false)
 const mobileScrolling = ref(false)
@@ -124,6 +126,10 @@ onUnmounted(() => {
 
 function dismiss() {
   dismissed.value = true
+}
+
+function dismissPill() {
+  pillDismissed.value = true
 }
 
 async function fetchVisitorData(): Promise<VisitorData | null> {
@@ -291,14 +297,13 @@ function formatDate(): string {
 }
 
 const siteName = computed(() => appStore.privateFeaturesAllowed ? '管理员' : '观众')
-const identityIcon = computed(() => appStore.privateFeaturesAllowed ? 'tabler:crown' : 'tabler:sparkles')
 </script>
 
 <template>
   <!-- 底部居中 IP 条（桌面+手机都显示） -->
   <Transition name="slide-up">
     <div
-      v-if="show && !dismissed && !mobileScrolling"
+      v-if="show && !dismissed && !pillDismissed && !mobileScrolling"
       class="visitor-info-pill fixed bottom-3 left-1/2 z-50 flex w-max max-w-[calc(100vw-1.5rem)] -translate-x-1/2
              items-center gap-1.5 rounded-full px-3 py-1.5 md:bottom-4 md:gap-2 md:px-4
              backdrop-blur-md
@@ -311,6 +316,16 @@ const identityIcon = computed(() => appStore.privateFeaturesAllowed ? 'tabler:cr
       <span class="max-w-20 shrink-0 truncate text-muted-foreground sm:max-w-none">{{ displayCountry }}</span>
       <span class="hidden sm:inline text-muted-foreground/40 shrink-0">|</span>
       <span class="hidden sm:inline text-muted-foreground truncate max-w-[140px] md:max-w-[220px]">{{ displayOrg }}</span>
+      <div class="visitor-info-pill__mask">
+        <button
+          type="button"
+          class="visitor-info-pill__close"
+          aria-label="关闭 IP 条"
+          @click="dismissPill"
+        >
+          <Icon icon="icon-park-outline:close" :width="12" :height="12" />
+        </button>
+      </div>
     </div>
   </Transition>
 
@@ -327,7 +342,7 @@ const identityIcon = computed(() => appStore.privateFeaturesAllowed ? 'tabler:cr
         <div class="flex items-center gap-2.5">
           <!-- 渐变头像圆 -->
           <div class="visitor-info-avatar size-9 rounded-full flex items-center justify-center shrink-0 shadow-md">
-            <Icon :icon="identityIcon" :width="18" :height="18" class="text-white" />
+            <LineGuitar class="size-6" />
           </div>
           <div class="flex flex-col leading-tight">
             <span class="text-[14px] font-bold text-violet-500 dark:text-violet-400">{{ siteName }}</span>
@@ -404,9 +419,37 @@ const identityIcon = computed(() => appStore.privateFeaturesAllowed ? 'tabler:cr
 }
 
 .visitor-info-avatar {
-  border: 1px solid rgb(255 255 255 / 0.72);
-  background: linear-gradient(135deg, #9b5cff, #6d7cff 52%, #38bdf8);
-  box-shadow: 0 0 18px rgb(139 92 246 / 0.34);
+  border: 1px solid rgb(255 79 163 / 0.35);
+  background: rgb(255 214 232 / 0.72);
+  box-shadow: 0 0 18px rgb(255 79 163 / 0.28);
+}
+
+.visitor-info-pill__mask {
+  position: absolute;
+  display: none;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.35rem;
+  border-radius: inherit;
+  background: rgb(20 8 18 / 0.42);
+  inset: 0;
+}
+
+.visitor-info-pill:hover .visitor-info-pill__mask,
+.visitor-info-pill:focus-within .visitor-info-pill__mask {
+  display: flex;
+}
+
+.visitor-info-pill__close {
+  display: grid;
+  width: 1.15rem;
+  height: 1.15rem;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.92);
+  color: #3b2433;
+  cursor: pointer;
 }
 
 :global(.dark .visitor-info-pill) {
