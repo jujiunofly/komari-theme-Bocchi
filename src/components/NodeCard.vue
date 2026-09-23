@@ -254,11 +254,14 @@ function hasRegion(region: string | null | undefined): boolean {
     <!-- 头部：在线点 + 名称 -->
     <template #header>
       <div class="flex items-center gap-2 min-w-0">
-        <span
-          class="gloria-node-star shrink-0"
-          :class="props.node.online ? 'gloria-node-star--online' : 'gloria-node-star--sleeping'"
+        <Icon
+          icon="icon-park-outline:guitar"
+          width="16"
+          height="16"
+          class="gloria-node-guitar shrink-0"
+          :class="props.node.online ? 'gloria-node-guitar--online' : 'gloria-node-guitar--sleeping'"
           aria-hidden="true"
-        >✦</span>
+        />
         <div class="flex min-w-0 flex-1 flex-col">
           <span class="text-sm font-bold min-w-0 truncate">{{ props.node.name }}</span>
           <span class="gloria-node-state">{{ props.node.online ? '在线' : '离线' }}</span>
@@ -726,21 +729,13 @@ function hasRegion(region: string | null | undefined): boolean {
   overflow: hidden;
 }
 
-.gloria-node-star {
-  display: inline-grid;
-  width: 1rem;
-  place-items: center;
-  font-size: 0.8rem;
-  text-shadow: 0 0 10px currentColor;
+.gloria-node-guitar--online {
+  color: #ff4fa3;
+  filter: drop-shadow(0 0 6px rgb(255 79 163 / 0.55));
 }
 
-.gloria-node-star--online {
-  color: #57d6ff;
-  animation: gloria-node-pulse 2.8s ease-in-out infinite;
-}
-
-.gloria-node-star--sleeping {
-  color: #76597d;
+.gloria-node-guitar--sleeping {
+  color: #c47a96;
 }
 
 .gloria-node-state {
@@ -762,21 +757,9 @@ function hasRegion(region: string | null | undefined): boolean {
   grid-template-columns: minmax(3rem, 0.62fr) minmax(0, 1fr) minmax(0, 1fr);
 }
 
-@keyframes gloria-node-pulse {
-  0%,
-  100% {
-    opacity: 0.72;
-    transform: scale(0.9);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.12);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .gloria-node-star--online {
-    animation: none;
+  .gloria-node-guitar--online {
+    filter: none;
   }
 }
 </style>

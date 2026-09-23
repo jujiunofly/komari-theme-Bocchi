@@ -487,7 +487,8 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
         key: 'onlineNodes',
         label: '在线',
         icon: 'tabler:activity-heartbeat',
-        value: `${formatCount(onlineNodeCount.value)} / ${formatCount(totalNodeCount.value)}`,
+        value: formatCount(onlineNodeCount.value),
+        unit: `/ ${formatCount(totalNodeCount.value)}`,
       }
     case 'avgCpu':
       return {
@@ -721,7 +722,7 @@ const cardPositionClasses = [
   'col-span-6 md:col-span-4 row-span-1',
   'col-span-6 md:col-span-4 row-span-1',
 ]
-const unitClass = 'text-xs md:text-sm font-medium leading-none text-muted-foreground'
+const unitClass = 'min-w-0 text-xs font-medium leading-tight text-muted-foreground md:text-sm'
 
 function getCardPositionClass(index: number): string {
   if (!showEarth.value)
@@ -814,10 +815,10 @@ onMounted(async () => {
             <Transition v-bind="metricSwitchTransitionProps">
               <div
                 :key="`${card.key}-${summaryTransitionKey}`"
-                class="flex min-w-0 flex-col gap-1"
+                class="flex min-w-0 items-baseline gap-1.5"
                 :style="getMetricSwitchStyle(index)"
               >
-                <span class="text-2xl md:text-3xl font-bold leading-none tracking-tight">
+                <span class="shrink-0 text-2xl font-bold leading-none tracking-tight md:text-3xl">
                   {{ card.value }}
                 </span>
                 <span v-if="card.unit" :class="unitClass">
