@@ -8,10 +8,10 @@ Komari 监控主题。布局和数据沿用 [Gloria Universe](https://github.com
 
 ## 背景
 
-| 模式 | 桌面 | 手机（宽度不超过 768px） |
-| --- | --- | --- |
-| 明亮 | `boqi_white_desktop.webp` | `boqi_white_phone.webp` |
-| 夜里 | `boqi_dark_desktop.webp` | `boqi_dark_phone.webp` |
+| 模式 | 桌面                      | 手机（宽度不超过 768px） |
+| ---- | ------------------------- | ------------------------ |
+| 明亮 | `boqi_white_desktop.webp` | `boqi_white_phone.webp`  |
+| 夜里 | `boqi_dark_desktop.webp`  | `boqi_dark_phone.webp`   |
 
 文件在 `public/images/bocchi/`。自定义背景留空时使用这四张。人物在画面左侧，右侧有一层遮罩，方便看卡片。
 

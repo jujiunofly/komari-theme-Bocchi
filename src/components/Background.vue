@@ -249,12 +249,24 @@ onUnmounted(() => {
   position: absolute;
   z-index: 4;
   inset: 0;
-  background: linear-gradient(90deg, rgb(255 214 232 / 0.02) 0%, rgb(255 228 238 / 0.12) 34%, rgb(255 236 244 / 0.5) 68%, rgb(255 214 232 / 0.72) 100%);
+  background: linear-gradient(
+    90deg,
+    rgb(255 214 232 / 0.02) 0%,
+    rgb(255 228 238 / 0.12) 34%,
+    rgb(255 236 244 / 0.5) 68%,
+    rgb(255 214 232 / 0.72) 100%
+  );
   pointer-events: none;
 }
 
 .dark .bocchi-scrim {
-  background: linear-gradient(90deg, rgb(20 8 18 / 0.02) 0%, rgb(20 8 18 / 0.22) 34%, rgb(20 8 18 / 0.58) 68%, rgb(12 4 10 / 0.78) 100%);
+  background: linear-gradient(
+    90deg,
+    rgb(20 8 18 / 0.02) 0%,
+    rgb(20 8 18 / 0.22) 34%,
+    rgb(20 8 18 / 0.58) 68%,
+    rgb(12 4 10 / 0.78) 100%
+  );
 }
 
 @media (max-width: 768px) {
@@ -269,7 +281,12 @@ onUnmounted(() => {
   }
 
   .bocchi-scrim {
-    background: linear-gradient(180deg, rgb(255 214 232 / 0.04) 0%, rgb(255 214 232 / 0.1) 48%, rgb(255 236 244 / 0.58) 100%);
+    background: linear-gradient(
+      180deg,
+      rgb(255 214 232 / 0.04) 0%,
+      rgb(255 214 232 / 0.1) 48%,
+      rgb(255 236 244 / 0.58) 100%
+    );
   }
 
   .dark .bocchi-scrim {
