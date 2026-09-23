@@ -490,7 +490,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
         label: '在线',
         icon: 'tabler:activity-heartbeat',
         value: formatCount(onlineNodeCount.value),
-        unit: ` / ${formatCount(totalNodeCount.value)}`,
+        unit: `/ ${formatCount(totalNodeCount.value)}`,
       }
     case 'avgCpu':
       return {
@@ -724,7 +724,7 @@ const cardPositionClasses = [
   'col-span-6 md:col-span-4 row-span-1',
   'col-span-6 md:col-span-4 row-span-1',
 ]
-const unitClass = 'text-[10px] md:text-[11px] font-medium text-muted-foreground truncate'
+const unitClass = 'min-w-0 text-xs font-medium leading-tight text-muted-foreground md:text-sm'
 
 function getCardPositionClass(index: number): string {
   if (!showEarth.value)
@@ -817,10 +817,10 @@ onMounted(async () => {
             <Transition v-bind="metricSwitchTransitionProps">
               <div
                 :key="`${card.key}-${summaryTransitionKey}`"
-                class="flex min-w-0 items-baseline"
+                class="flex min-w-0 items-baseline gap-1.5"
                 :style="getMetricSwitchStyle(index)"
               >
-                <span class="text-md md:text-2xl font-bold leading-none tracking-tight truncate">
+                <span class="shrink-0 text-2xl font-bold leading-none tracking-tight md:text-3xl">
                   {{ card.value }}
                 </span>
                 <span v-if="card.unit" :class="unitClass">
@@ -854,9 +854,9 @@ onMounted(async () => {
 <style scoped>
 .gloria-stat-card__label {
   max-width: calc(100% - 1.35rem);
-  font-size: clamp(0.49rem, 0.62vw, 0.64rem);
-  line-height: 1.25;
-  letter-spacing: 0.045em;
+  font-size: 0.82rem;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
   white-space: nowrap;
 }
 
