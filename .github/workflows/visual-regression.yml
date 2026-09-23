@@ -4,7 +4,6 @@ on:
   pull_request:
   push:
     branches:
-      - main
       - 1.0.0
 
 permissions:
@@ -34,15 +33,15 @@ jobs:
         run: bunx playwright install --with-deps chromium
 
       - name: Compare visual snapshots
-        if: "${{ github.event_name != 'push' || (github.ref != 'refs/heads/main' && github.ref != 'refs/heads/1.0.0') || contains(github.event.head_commit.message, 'test: update visual snapshots') }}"
+        if: "${{ github.event_name != 'push' || contains(github.event.head_commit.message, 'test: update visual snapshots') }}"
         run: bun run test:visual
 
       - name: Refresh visual snapshots
-        if: "${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/1.0.0') && !contains(github.event.head_commit.message, 'test: update visual snapshots') }}"
+        if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/1.0.0' && !contains(github.event.head_commit.message, 'test: update visual snapshots') }}"
         run: bun run test:visual:update
 
       - name: Commit updated snapshots
-        if: "${{ github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/1.0.0') && !contains(github.event.head_commit.message, 'test: update visual snapshots') }}"
+        if: "${{ github.event_name == 'push' && github.ref == 'refs/heads/1.0.0' && !contains(github.event.head_commit.message, 'test: update visual snapshots') }}"
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
