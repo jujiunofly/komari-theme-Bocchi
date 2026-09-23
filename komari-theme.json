@@ -2,7 +2,7 @@
   "name": "Bocchi",
   "short": "Bocchi",
   "description": "波奇酱粉丝向 Komari 监控主题：粉色玻璃卡片、明暗与手机桌面四套背景、日语曲名标签",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "author": "jujiunofly",
   "url": "https://github.com/jujiunofly/komari-theme-Bocchi",
   "preview": "preview.png",
@@ -154,7 +154,35 @@
         "name": "波奇彩蛋 彩蛋自定义素材",
         "type": "string",
         "default": "",
-        "help": "留空使用内置 内置波奇夜里图和“一个人也算练过”文字；左上角 发夹标记 使用独立的光束彩蛋，不受此项影响。可填写 HTTPS 地址或 local:相对路径；请确保拥有素材使用权。"
+        "help": "留空使用内置波奇夜里图。可填写 HTTPS 地址或 local:相对路径；请确保拥有素材使用权。"
+      },
+      {
+        "key": "easterEyebrow",
+        "name": "彩蛋上方短句",
+        "type": "string",
+        "default": "结束またね",
+        "help": "两个彩蛋画面上方的短句。"
+      },
+      {
+        "key": "easterSignature",
+        "name": "彩蛋下方署名",
+        "type": "string",
+        "default": "波奇ちゃん",
+        "help": "两个彩蛋画面下方的署名。"
+      },
+      {
+        "key": "easterMapSlogan",
+        "name": "地图彩蛋中间文字",
+        "type": "string",
+        "default": "即使结束了，也要再见。",
+        "help": "点击地图右上角按钮后，画面中间的那一句。字号与头像彩蛋相同。"
+      },
+      {
+        "key": "easterAvatarSlogan",
+        "name": "头像彩蛋中间文字",
+        "type": "string",
+        "default": "即使孤独，也要向前。",
+        "help": "点击左上角头像后，画面中间的那一句。字号与地图彩蛋相同。"
       },
       {
         "key": "visitorInfoEnabled",

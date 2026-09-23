@@ -9,6 +9,7 @@ import { computed, defineAsyncComponent, onMounted, ref } from 'vue'
 import GloriaCore from '@/components/GloriaCore.vue'
 import { CardX } from '@/components/ui/card-x'
 import { DataTooltip } from '@/components/ui/data-tooltip'
+import { useNodeGeoClusters } from '@/composables/useNodeGeoClusters'
 import { UI_CONFIG } from '@/constants/ui'
 import { useAppStore } from '@/stores/app'
 import { useNodesStore } from '@/stores/nodes'
@@ -77,6 +78,17 @@ const excludeFreeNodes = ref(true)
 const financeDetailsOpen = ref(false)
 const currentTime = useNow({ interval: 1000 })
 const summaryNodes = computed(() => props.nodes ?? nodesStore.visibleNodes)
+const mapNodes = computed(() => props.globeNodes ?? summaryNodes.value)
+const { regionClusters } = useNodeGeoClusters({ nodes: () => mapNodes.value })
+const litRegionCount = computed(() => {
+  const codes = new Set<string>()
+  for (const cluster of regionClusters.value) {
+    const code = cluster.code.toUpperCase()
+    if (/^[A-Z]{2}$/.test(code))
+      codes.add(code)
+  }
+  return codes.size
+})
 const summaryTransitionKey = computed(() => props.transitionKey ?? nodesStore.visibleNodes.length)
 const metricSwitchTransitionProps = computed(() => ({
   ...(appStore.disablePageAnimation
@@ -489,8 +501,7 @@ function getCardDefinition(key: GeneralCardKey): GeneralMetricCard {
         key: 'onlineNodes',
         label: '点亮地区',
         icon: 'tabler:activity-heartbeat',
-        value: formatCount(onlineNodeCount.value),
-        unit: `/ ${formatCount(totalNodeCount.value)}`,
+        value: formatCount(litRegionCount.value),
       }
     case 'avgCpu':
       return {

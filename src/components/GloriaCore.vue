@@ -18,7 +18,7 @@ const easterType = computed(() => isReflectionEaster.value ? 'image' : appStore.
 const easterAlt = computed(() => isReflectionEaster.value
   ? '波奇酱明亮背景'
   : '波奇酱夜里背景')
-const easterMessage = computed(() => isReflectionEaster.value ? '今天也出门了' : '一个人也算练过')
+const easterMessage = computed(() => isReflectionEaster.value ? appStore.easterAvatarSlogan : appStore.easterMapSlogan)
 
 function revealEasterEgg(event?: Event): void {
   const detail = event instanceof CustomEvent ? event.detail as { variant?: string } | undefined : undefined
@@ -54,9 +54,9 @@ onBeforeUnmount(() => {
           <span v-for="index in 18" :key="index" class="gloria-easter__star" :style="{ '--star-index': index }" aria-hidden="true">✦</span>
           <span class="gloria-easter__content">
             <LineGuitar class="gloria-easter__gem" />
-            <small>结束后见</small>
-            <strong :class="{ 'gloria-easter__message--reflection': isReflectionEaster }">{{ easterMessage }}</strong>
-            <em>波奇酱</em>
+            <small>{{ appStore.easterEyebrow }}</small>
+            <strong>{{ easterMessage }}</strong>
+            <em>{{ appStore.easterSignature }}</em>
           </span>
         </button>
       </Transition>
@@ -130,10 +130,32 @@ onBeforeUnmount(() => {
     0 0 16px #ffb7d5;
   animation: gloria-egg-spark 3.4s ease-in-out infinite;
 }
+
+:global(:root:not(.dark)) .gloria-stage__egg {
+  border-color: rgb(232 90 140 / 0.45);
+  background: rgb(255 255 255 / 0.88);
+  color: #c43b6e;
+  box-shadow: 0 8px 22px rgb(232 90 140 / 0.16);
+}
+
+:global(:root:not(.dark)) .gloria-stage__egg::before {
+  border-color: rgb(232 90 140 / 0.38);
+}
+
+:global(:root:not(.dark)) .gloria-stage__egg::after {
+  color: #e85a8c;
+  text-shadow: 0 0 8px rgb(255 79 163 / 0.4);
+}
+
 .gloria-stage__egg:hover {
   border-color: rgb(255 79 163 / 0.9);
   background: rgb(58 16 36 / 0.88);
   transform: translateY(-1px) scale(1.04);
+}
+
+:global(:root:not(.dark)) .gloria-stage__egg:hover {
+  border-color: rgb(232 90 140 / 0.72);
+  background: rgb(255 245 249 / 0.96);
 }
 .gloria-stage__egg img {
   filter: drop-shadow(0 0 6px rgb(255 79 163 / 0.85));
@@ -213,10 +235,6 @@ onBeforeUnmount(() => {
     0 4px 26px #02030d,
     0 0 26px rgb(255 79 163 / 0.66),
     0 0 64px rgb(139 92 246 / 0.74);
-}
-.gloria-easter__message--reflection {
-  font-size: clamp(2.2rem, 5.6vw, 4.7rem) !important;
-  letter-spacing: 0.08em !important;
 }
 .gloria-easter__content em {
   margin-top: 0.55rem;
@@ -328,10 +346,6 @@ onBeforeUnmount(() => {
   }
   .gloria-easter__content strong {
     letter-spacing: 0.07em;
-  }
-  .gloria-easter__message--reflection {
-    font-size: clamp(2rem, 10vw, 2.7rem) !important;
-    letter-spacing: 0.04em !important;
   }
 }
 @media (prefers-reduced-motion: reduce) {

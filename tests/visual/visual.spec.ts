@@ -317,7 +317,7 @@ test('GLORIA world map highlights node regions and opens wedding-dress easter eg
   await expect(page.locator('[data-country-code="US"].is-active')).toBeVisible()
 
   await page.locator('[data-gloria-easter-trigger="wedding"]').click()
-  await expect(page.getByText('一个人也算练过', { exact: true })).toBeVisible()
+  await expect(page.getByText('即使结束了，也要再见。', { exact: true })).toBeVisible()
   await expect(page.locator('.gloria-easter__backdrop')).toHaveAttribute('src', '/images/bocchi/boqi_dark_desktop.webp')
   await expect(page).toHaveScreenshot('gloria-easter-desktop.png', { fullPage: false })
 })
@@ -328,8 +328,8 @@ test('Crystal G opens the reflected-light easter egg independently', async ({ pa
   await openStablePage(page)
 
   await page.locator('[data-gloria-easter-trigger="reflection"]').click()
-  await expect(page.getByText('今天也出门了', { exact: true })).toBeVisible()
-  await expect(page.getByText('一个人也算练过', { exact: true })).toHaveCount(0)
+  await expect(page.getByText('即使孤独，也要向前。', { exact: true })).toBeVisible()
+  await expect(page.getByText('即使结束了，也要再见。', { exact: true })).toHaveCount(0)
   await expect(page.locator('.gloria-easter__backdrop')).toHaveAttribute('src', '/images/bocchi/boqi_white_desktop.webp')
   await expect(page).toHaveScreenshot('gloria-reflection-easter-desktop.png', { fullPage: false })
 })
@@ -340,7 +340,7 @@ test('Crystal G reflected-light easter egg remains readable on mobile', async ({
   await openStablePage(page)
 
   await page.locator('[data-gloria-easter-trigger="reflection"]').click()
-  await expect(page.getByText('今天也出门了', { exact: true })).toBeVisible()
+  await expect(page.getByText('即使孤独，也要向前。', { exact: true })).toBeVisible()
   const horizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)
   expect(horizontalOverflow).toBeLessThanOrEqual(1)
   await expect(page).toHaveScreenshot('gloria-reflection-easter-mobile.png', { fullPage: false })

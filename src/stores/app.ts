@@ -1126,6 +1126,11 @@ const useAppStore = defineStore('app', () => {
     return resolveBackgroundSource(themeSettings.value.gloriaHeroUrl)
   })
 
+  const easterEyebrow = computed(() => readStringSetting(themeSettings.value, 'easterEyebrow', '结束またね') || '结束またね')
+  const easterSignature = computed(() => readStringSetting(themeSettings.value, 'easterSignature', '波奇ちゃん') || '波奇ちゃん')
+  const easterMapSlogan = computed(() => readStringSetting(themeSettings.value, 'easterMapSlogan', '即使结束了，也要再见。') || '即使结束了，也要再见。')
+  const easterAvatarSlogan = computed(() => readStringSetting(themeSettings.value, 'easterAvatarSlogan', '即使孤独，也要向前。') || '即使孤独，也要向前。')
+
   const visitorInfoEnabled = computed<boolean>(() => readBooleanSetting(themeSettings.value, 'visitorInfoEnabled', true))
 
   const generalCardEnabledMap = computed<Record<GeneralCardKey, boolean>>(() => {
@@ -1431,6 +1436,10 @@ const useAppStore = defineStore('app', () => {
     regionAudioTracks,
     gloriaHeroType,
     gloriaHeroUrl,
+    easterEyebrow,
+    easterSignature,
+    easterMapSlogan,
+    easterAvatarSlogan,
     visitorInfoEnabled,
     generalCardEnabledMap,
     generalCardOrder,
